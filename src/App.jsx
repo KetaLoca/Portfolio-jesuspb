@@ -1,7 +1,7 @@
 import './App.css'
 import About from './components/About.jsx'
 import Header from "./components/Header.jsx"
-import Projects from './components/Projects2.jsx'
+import Projects from './components/Projects.jsx'
 
 function App() {
   return (
