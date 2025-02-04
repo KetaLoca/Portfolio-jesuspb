@@ -18,17 +18,32 @@ const Projects = () => {
             id: 2,
             title: "CrazyWeekEnd - BACKEND",
             description: "API Rest hecha con ExpressJS y PostgreSQL siguiendo buenas prácticas como: patrón de diseño MVC, passwords hasheadas con bcrypt, Jwebtokens, cookies, integridad en la base de datos, etc...",
-            image: "/frontend-buscador.png",
+            image: "/backend.png",
             deployment: "https://backend.jesuspb.dev/alojamientos",
             github: "https://github.com/KetaLoca/CrazyWeekEnd_API_Express"
         },
         {
             id: 3,
-            title: "Mi propio portfolio",
-            description: "Descripción breve del proyecto 3.",
-            image: "/frontend-buscador.png",
+            title: "Despliegue Docker + Kubernetes",
+            description: "Tengo un clúster de kubernetes alojado en DigitalOcean, y en ese clúster he desplegado el frontend de mi APP, el backend y mi portfolio. Está desplegado con mis propios dominios, subdominios y cifrado SSL.",
+            image: "/kubernetes.png",
+            github: "https://github.com/KetaLoca/k8s-CrazyWeekEnd"
+        },
+        {
+            id: 4,
+            title: "PORTFOLIO - Jesús Pérez Bañobre",
+            description: 'En el frontend de mi app "CrazyWeekEnd" no me centré mucho en el maquetado, pero en el caso del portfolio creo que se refleja que puedo desenvolverme bien maquetando con un mínimo de diseño y responsive design, usando React y Tailwindcss.',
+            image: "/portfolio.png",
             github: "https://github.com/KetaLoca/Portfolio-jesuspb",
         },
+
+        {
+            id: 5,
+            title: "CrazyWeekEnd - Android APP",
+            description: "Para el tfg de mi formación desarrollé una APP de booking de casas rurales pero para Android nativo usando Kotlin. Fue anterior a la APP web y tiene menos funcionalidades.",
+            image: "/FutureMainActivity.png",
+            github: "https://github.com/KetaLoca/CrazyWeekEnd570"
+        }
     ];
 
     const handleOnClick = (link) => {
@@ -45,7 +60,7 @@ const Projects = () => {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 }
         },
-        className: "w-full h-full py-12"
+        className: "w-full h-full py-12 px-4"
     };
 
     return (
@@ -53,7 +68,7 @@ const Projects = () => {
             <Swiper {...swiperProps}>
                 {projects.map((project) => (
                     <SwiperSlide key={project.id}>
-                        <div className="h-[500px] bg-gray-700 rounded-xl shadow-lg m-4 overflow-hidden flex flex-col">
+                        <div className="h-[500px] bg-gray-700 rounded-xl shadow-lg m-4 overflow-hidden flex flex-col mb-8 mt-6">
                             {/* Imagen con overlay */}
                             <div className="relative h-64">
                                 <img
