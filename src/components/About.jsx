@@ -82,7 +82,7 @@ const About = () => {
           {/* Botón CV */}
           <div className="text-center">
             <a
-              href="/public/Currículum.pdf"
+              href="/curriculum.pdf"
               download="JesusPerezBanobre_CV.pdf"
               className="inline-flex items-center px-6 py-3 bg-green-800/80 hover:bg-green-900/70 text-white rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base"
             >
