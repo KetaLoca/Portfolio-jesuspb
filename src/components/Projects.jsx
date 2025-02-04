@@ -9,7 +9,7 @@ const Projects = () => {
         {
             id: 1,
             title: "CrazyWeekEnd - FRONTEND",
-            description: "Frontend hecho en React para una APP de booking de casas rurales. La aplicación demuestra que sé usar las herramientas de React correctamente: React Router, useState(), useEffect(), useContext(), etc...",
+            description: "Página web que permite ofertar y alquilar casas rurales. La aplicación demuestra que entiendo las herramientas que ofrece React: React Router, useState(), useEffect(), useContext(), etc...",
             image: "/frontend-buscador.png",
             deployment: "https://crazyweekend570.jesuspb.dev",
             github: "https://github.com/KetaLoca/CrazyWeekEnd"
@@ -17,7 +17,7 @@ const Projects = () => {
         {
             id: 2,
             title: "CrazyWeekEnd - BACKEND",
-            description: "API Rest hecha con ExpressJS y PostgreSQL siguiendo buenas prácticas como: patrón de diseño MVC, passwords hasheadas con bcrypt, Jwebtokens, cookies, integridad en la base de datos, etc...",
+            description: "API Rest hecha con ExpressJS y PostgreSQL siguiendo buenas prácticas: patrón de diseño MVC, passwords hasheadas con bcrypt, Jwebtokens, cookies, integridad en la base de datos, etc...",
             image: "/backend.png",
             deployment: "https://backend.jesuspb.dev/alojamientos",
             github: "https://github.com/KetaLoca/CrazyWeekEnd_API_Express"

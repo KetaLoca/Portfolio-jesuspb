@@ -31,7 +31,7 @@ const Formation = () => {
   return (
     <section id="formacion" className="w-screen bg-gradient-to-b from-blue-300/50 to-gray-300 py-10 px-20 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -44,7 +44,7 @@ const Formation = () => {
         <div className="relative grid md:grid-cols-2 gap-8 gap-y-8 md:gap-x-16 lg:gap-x-24">
           {/* Línea de tiempo decorativa */}
           <div className="hidden md:block absolute left-1/2 w-1 bg-blue-200 h-full top-0 -translate-x-1/2" />
-          
+
           {formations.map((formacion, index) => (
             <motion.div
               key={formacion.title}
@@ -63,9 +63,8 @@ const Formation = () => {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{formacion.title}</h3>
-                <p className="text-blue-600 font-medium mb-2">{formacion.institution}</p>
-                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm mb-4">
+                <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">{formacion.title}</h3>
+                <span className="block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm mb-4 text-center">
                   {formacion.year}
                 </span>
 

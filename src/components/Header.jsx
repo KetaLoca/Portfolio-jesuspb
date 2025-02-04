@@ -22,18 +22,19 @@ const Header = () => {
     //     }
     // };
 
-    const handleScroll = (sectionId) => {
+    const handleScroll = (sectionId, e) => {
         const section = document.getElementById(sectionId);
         if (section) {
-          const headerHeight = headerRef.current?.offsetHeight || 0;
-          const sectionPosition = section.offsetTop - headerHeight;
-          
-          window.scrollTo({
-            top: sectionPosition,
-            behavior: 'smooth'
-          });
+            const headerHeight = headerRef.current?.offsetHeight || 0;
+            const sectionPosition = section.offsetTop - headerHeight;
+
+            window.scrollTo({
+                top: sectionPosition,
+                behavior: 'smooth'
+            });
         }
-      };
+        e.target.blur()
+    };
 
     return (
         <header ref={headerRef} className="fixed w-full top-0 left-0 z-50 bg-blue-900/70 backdrop-blur-sm">
@@ -59,7 +60,7 @@ const Header = () => {
                         {sections.map((section) => (
                             <button
                                 key={section.id}
-                                onClick={() => handleScroll(section.id)}
+                                onClick={(e) => handleScroll(section.id, e)}
                                 className={`${activeSection === section.id
                                     ? 'text-indigo-600 border-b-2 border-indigo-600'
                                     : 'text-gray-600 hover:text-indigo-600 transition-colors'

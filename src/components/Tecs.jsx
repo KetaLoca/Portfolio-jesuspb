@@ -1,11 +1,13 @@
 import { FaJava, FaGitAlt, FaGithub, FaDocker, FaReact, FaNode } from "react-icons/fa";
-import { SiHibernate, SiApache, SiKotlin, SiJavascript, SiExpress, SiKubernetes } from "react-icons/si";
+import { SiHibernate, SiPostgresql, SiKotlin, SiJavascript, SiExpress, SiKubernetes } from "react-icons/si";
+import { TbSql } from "react-icons/tb";
+
 
 const Tecs = () => {
   const technologies = [
     { name: "Java", icon: <FaJava />, color: "#007396" },
     { name: "Hibernate", icon: <SiHibernate />, color: "#59666C" },
-    { name: "Maven", icon: <SiApache />, color: "#C71A36" },
+    { name: "PostgreSQL", icon: <SiPostgresql />, color: "#61DAFB" },
     { name: "Kotlin", icon: <SiKotlin />, color: "#7F52FF" },
     { name: "Javascript", icon: <SiJavascript />, color: "#F7DF1E" },
     { name: "React", icon: <FaReact />, color: "#61DAFB" },
