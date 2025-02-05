@@ -29,7 +29,7 @@ const Formation = () => {
   ];
 
   return (
-    <section id="formacion" className="w-screen bg-gradient-to-b from-blue-300/50 to-gray-400 py-10 px-20 md:px-8">
+    <section id="formacion" className="w-screen bg-gradient-to-b from-blue-300/50 to-gray-500 py-10 px-20 md:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

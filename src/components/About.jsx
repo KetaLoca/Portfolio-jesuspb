@@ -4,7 +4,7 @@ const About = () => {
   return (
     <section
       id="sobre-mi"
-      className="w-full bg-gray-700 py-12 md:py-16 lg:py-20 relative left-1/2 right-1/2 -translate-x-1/2"
+      className="w-full bg-gradient-to-b from-gray-700 to-gray-800 py-12 md:py-16 lg:py-20 relative left-1/2 right-1/2 -translate-x-1/2"
     >
       <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 flex flex-col lg:flex-row items-center lg:items-start">
         {/* Imagen en el lado izquierdo */}

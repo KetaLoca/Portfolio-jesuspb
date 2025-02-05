@@ -64,11 +64,11 @@ const Projects = () => {
     };
 
     return (
-        <section id='proyectos' className="w-screen overflow-hidden bg-blue-300/50">
+        <section id='proyectos' className="w-screen overflow-hidden bg-gradient-to-b from-blue-300/50 to-gray-500">
             <Swiper {...swiperProps}>
                 {projects.map((project) => (
                     <SwiperSlide key={project.id}>
-                        <div className="h-[500px] bg-gray-700 rounded-xl shadow-lg m-4 overflow-hidden flex flex-col mb-8 mt-6">
+                        <div className="h-[500px] bg-gradient-to-b from-gray-700 to-gray-800 rounded-xl shadow-lg m-4 overflow-hidden flex flex-col mb-8 mt-6">
                             {/* Imagen con overlay */}
                             <div className="relative h-64 max-h-54">
                                 <img

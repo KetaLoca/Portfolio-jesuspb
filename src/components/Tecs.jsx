@@ -20,7 +20,7 @@ const Tecs = () => {
   ];
 
   return (
-    <section id="tecnologias" className="w-screen bg-gray-700 py-16 px-4 md:px-8">
+    <section id="tecnologias" className="w-screen bg-gradient-to-b from-gray-700 to-gray-800 py-16 px-4 md:px-8">
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
         Mi Stack Tecnológico
       </h2>
