@@ -8,8 +8,7 @@ const About = () => {
     >
       <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 flex flex-col lg:flex-row items-center lg:items-start">
         {/* Imagen en el lado izquierdo */}
-        <div className="hidden lg:block lg:w-1/3 mr-10">
-          <h3 className="font-bold text-white text-center mb-1 bg-blue-700/70">Jesús Pérez Bañobre</h3>
+        <div className="hidden lg:block lg:w-1/3 mr-10 mt-2">
           <img
             src="/Foto.jpg"
             alt="Jesús Pérez Bañobre"
@@ -21,16 +20,14 @@ const About = () => {
         <div className="lg:w-2/3 flex flex-col items-center lg:items-center justify-center">
           {/* Texto descriptivo */}
           <div className="mb-8 md:mb-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 mt-5">
-              Sobre mí
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-5 mt-5">
+              Jesús Pérez Bañobre
             </h2>
             <p className="text-white text-base md:text-lg leading-relaxed">
-              Soy un joven de 25 años con muchas ganas de trabajar. El
-              desarrollo de software me apasiona y estoy deseando seguir
-              creciendo como programador. He estado aprendiendo y
-              empleando distintas tecnologías y tengo la capacidad de
-              adaptarme a cualquier framework o lenguaje que pudiese
-              necesitar en el futuro.
+              Soy un joven desarrollador de software con muchas ganas de trabajar.
+              Estoy principalmente enfocado al "Backend", puesto que es la rama del desarrollo
+              que más disfruto y para la que más capacitado estoy. Tengo varios proyectos personales
+              que demuestran mis aptitudes y ganas de seguir creciendo como profesional.
             </p>
           </div>
 

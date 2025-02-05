@@ -32,7 +32,7 @@ const Projects = () => {
         {
             id: 4,
             title: "PORTFOLIO - Jesús Pérez Bañobre",
-            description: 'En el frontend de mi app "CrazyWeekEnd" no me centré mucho en el maquetado, pero en el caso del portfolio creo que se refleja que puedo desenvolverme bien maquetando con un mínimo de diseño y responsive design, usando React y Tailwindcss.',
+            description: 'Aunque estoy más enfocado al backend, creo que este portfolio demuestra mi capacidad para trabajar también en el frontend usando React y Tailwindcss para crear una buena web con "responsive design" y un diseño amigable',
             image: "/portfolio.png",
             github: "https://github.com/KetaLoca/Portfolio-jesuspb",
         },
@@ -40,7 +40,7 @@ const Projects = () => {
         {
             id: 5,
             title: "CrazyWeekEnd - Android APP",
-            description: "Para el tfg de mi formación desarrollé una APP de booking de casas rurales pero para Android nativo usando Kotlin. Fue anterior a la APP web y tiene menos funcionalidades.",
+            description: "Para mi tfg desarrollé una APP de booking de casas rurales pero para Android nativo usando Kotlin y Firebase para el backend. Es anterior a la APP web y tiene menos funcionalidades.",
             image: "/FutureMainActivity.png",
             github: "https://github.com/KetaLoca/CrazyWeekEnd570"
         }
@@ -70,7 +70,7 @@ const Projects = () => {
                     <SwiperSlide key={project.id}>
                         <div className="h-[500px] bg-gray-700 rounded-xl shadow-lg m-4 overflow-hidden flex flex-col mb-8 mt-6">
                             {/* Imagen con overlay */}
-                            <div className="relative h-64">
+                            <div className="relative h-64 max-h-54">
                                 <img
                                     src={project.image}
                                     alt={project.title}
