@@ -52,7 +52,7 @@ const Header = () => {
 
                     {/* Texto/Logo Centrado (solo móvil) */}
                     <span className="md:hidden absolute left-1/2 -translate-x-1/2 text-xl font-bold text-white-900">
-                        Jesús Pérez Bañobre
+                        Desarrollador Fullstack
                     </span>
 
                     {/* Menú Desktop (centrado) */}
