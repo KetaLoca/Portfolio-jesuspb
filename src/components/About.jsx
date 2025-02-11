@@ -8,7 +8,7 @@ const About = () => {
     >
       <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 flex flex-col lg:flex-row items-center lg:items-start">
         {/* Imagen en el lado izquierdo */}
-        <div className="hidden lg:block lg:w-1/3 mr-10 mt-2">
+        <div className="hidden lg:block lg:w-1/3 mr-10 mt-7">
           <img
             src="/Foto.jpg"
             alt="Jesús Pérez Bañobre"
@@ -24,10 +24,17 @@ const About = () => {
               Jesús Pérez Bañobre
             </h2>
             <p className="text-white text-base md:text-lg leading-relaxed">
-              Soy un joven desarrollador de software con muchas ganas de trabajar.
-              Estoy principalmente enfocado al "Backend", puesto que es la rama del desarrollo
-              que más disfruto y para la que más capacitado estoy. Tengo varios proyectos personales
-              que demuestran mis aptitudes y ganas de seguir creciendo como profesional.
+              Soy un desarrollador de software proactivo y con ganas de seguir creciendo.
+              He aprendido y sigo aprendiendo distintas tecnologías, por lo que cuento con una
+              buena base de conocimientos que me permiten adaptarme a cualquier marco de trabajo. 
+              Estoy principalmente enfocado al backend.
+            </p>
+            <p className="text-white text-base md:text-lg leading-relaxed mt-3">
+              Tengo varios proyectos personales
+              que demuestran mis aptitudes y mi capacidad para aprender y aplicar buenas prácticas.
+              En la sección "Proyectos" se pueden ver algunos de los más destacados, todos publicados
+              en repositorios públicos de GitHub, y alguno desplegado a producción con mi propio dominio y Kubernetes, incluyendo
+              este mismo portfolio.
             </p>
           </div>
 
