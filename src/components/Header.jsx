@@ -32,7 +32,7 @@ const Header = () => {
 
     return (
         <header ref={headerRef} className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-            <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center h-16 relative">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}

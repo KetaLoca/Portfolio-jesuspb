@@ -29,8 +29,8 @@ const Formation = () => {
   ];
 
   return (
-    <section id="formacion" className="w-full bg-gradient-to-b from-blue-300/50 to-gray-500 px-4 py-10 sm:px-6 md:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="formacion" className="w-full bg-gradient-to-b from-blue-300/50 to-gray-500 py-10">
+      <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

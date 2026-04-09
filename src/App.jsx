@@ -9,7 +9,7 @@ import Tecs from './components/Tecs.jsx'
 function App() {
 
   return (
-    <div className="relative mx-auto w-full max-w-[100vw] overflow-x-hidden bg-slate-950">
+    <div className="relative min-h-screen w-full overflow-x-clip bg-slate-950 text-white">
       <Header />
       <About />
       <Experience />

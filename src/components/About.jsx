@@ -8,8 +8,8 @@ const About = () => {
 
   const highlights = [
     {
-      value: "1+ año",
-      label: "de experiencia profesional entregando producto e infraestructura",
+      value: "SynergIA",
+      label: "Platform Engineer desde julio de 2025",
     },
     {
       value: "Kubernetes bare metal",
@@ -17,51 +17,55 @@ const About = () => {
     },
     {
       value: "Backend + IA",
-      label: "servicios, agentes y automatización con impacto real",
+      label: "servicios internos, OCR y agentes conectados a negocio",
     },
   ];
 
   const focusAreas = [
-    "Platform engineering",
-    "Kubernetes",
     "Backend",
-    "Automatización con OCR",
+    "React",
+    "Node.js",
+    "Redis",
+    "Stripe",
+    "Kubernetes",
+    "Terraform",
+    "ArgoCD",
+    "GitHub Actions",
+    "Ansible",
+    "n8n",
     "Agentes de IA",
-    "Infraestructura",
   ];
 
   const currentWork = [
-    "Opero infraestructura y despliegues sobre Kubernetes con ownership real de la plataforma.",
-    "Desarrollo backend y herramientas internas para acelerar procesos y entregas.",
-    "Diseño automatizaciones con OCR, workflows y agentes de IA conectados a necesidades de negocio.",
+    "Plataforma, despliegues y operación diaria sobre Kubernetes.",
+    "Desarrollo backend y herramientas internas para producto y equipo.",
+    "Automatización de procesos con OCR, n8n y agentes de IA.",
   ];
 
   return (
     <section
       id="sobre-mi"
-      className="relative left-1/2 right-1/2 w-full -translate-x-1/2 bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950 px-4 pb-16 pt-28 sm:px-6 md:pb-20 lg:px-8"
+      className="w-full overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 pb-16 pt-28 md:pb-20 lg:pt-32"
     >
-      <div className="mx-auto grid w-full max-w-6xl items-start gap-10 lg:grid-cols-[1.35fr_0.85fr]">
-        <div>
-          <span className="inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-100">
-            Platform Engineer · Backend · IA aplicada
+      <div className="mx-auto grid w-full max-w-[1360px] gap-10 px-4 sm:px-6 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,380px)] lg:items-center lg:px-8">
+        <div className="min-w-0">
+          <span className="inline-flex rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-2 text-sm font-medium text-sky-100">
+            Jesús Pérez Bañobre
           </span>
 
-          <div className="mt-6 text-center lg:text-left">
-            <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-              Jesús Pérez Bañobre
+          <div className="mt-6 text-left">
+            <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+              Platform Engineer con foco en backend, Kubernetes y automatización
             </h1>
             <p className="mt-6 text-base leading-relaxed text-slate-200 md:text-lg">
-              Soy un ingeniero de software centrado en construir plataforma, backend y
-              automatizaciones útiles para negocio. Ya no me defino como un perfil junior:
-              llevo más de un año trabajando en entornos reales, tomando decisiones técnicas,
-              manteniendo infraestructura y entregando soluciones que llegan a producción.
+              Trabajo en SynergIA en un rol muy transversal: plataforma, desarrollo backend y
+              automatización. Mi día a día mezcla despliegues, operación, servicios internos y
+              soluciones que terminan usándose de verdad.
             </p>
             <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
-              Actualmente trabajo en SynergIA como Platform Engineer. He levantado y gestiono
-              mi propio cluster de Kubernetes bare metal en Hetzner, desarrollo servicios
-              backend, creo agentes de IA y automatizo procesos con OCR y flujos que reducen
-              trabajo manual y tiempo operativo.
+              He levantado y gestiono un cluster de Kubernetes bare metal en Hetzner, desarrollo
+              backend, diseño automatizaciones con OCR y n8n, y construyo agentes de IA cuando
+              encajan bien con el problema a resolver.
             </p>
           </div>
 
@@ -69,9 +73,9 @@ const About = () => {
             {highlights.map((highlight) => (
               <div
                 key={highlight.value}
-                className="rounded-2xl border border-white/10 bg-white/8 p-4 text-left shadow-lg shadow-black/10 backdrop-blur"
+                className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left shadow-lg shadow-black/10 backdrop-blur"
               >
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-200">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-200">
                   {highlight.value}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-slate-200">
@@ -85,38 +89,32 @@ const About = () => {
             {focusAreas.map((area) => (
               <span
                 key={area}
-                className="rounded-full border border-white/10 bg-slate-900/70 px-4 py-2 text-sm text-slate-100"
+                className="rounded-full border border-white/10 bg-slate-900/80 px-4 py-2 text-sm text-slate-100"
               >
                 {area}
               </span>
             ))}
           </div>
 
-          <div className="mb-8 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-start sm:gap-8 md:mb-12">
+          <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="mailto:xesuspb@gmail.com"
-              className="flex items-center text-sm text-slate-200 transition-colors hover:text-blue-300 sm:text-base"
+              className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition-colors hover:border-sky-400/40 hover:text-sky-200 sm:text-base"
             >
               <FaEnvelope className="mr-2 h-4 w-4" />
               xesuspb@gmail.com
             </a>
-
-            <div className="hidden h-6 w-px bg-white/20 sm:block" />
-
             <a
               href="tel:+34647736793"
-              className="flex items-center text-sm text-slate-200 transition-colors hover:text-blue-300 sm:text-base"
+              className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition-colors hover:border-sky-400/40 hover:text-sky-200 sm:text-base"
             >
               <FaPhone className="mr-2 h-4 w-4" />
               +34 647 736 793
             </a>
-          </div>
-
-          <div className="text-center lg:text-left">
             <a
               href="/curriculum.pdf"
               download="JesusPerezBanobre_CV.pdf"
-              className="inline-flex items-center rounded-lg bg-emerald-700/90 px-6 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-emerald-800 sm:text-base"
+              className="inline-flex items-center rounded-full bg-emerald-600 px-5 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-emerald-500 sm:text-base"
             >
               <svg
                 className="w-5 h-5 mr-2"
@@ -136,32 +134,34 @@ const About = () => {
           </div>
         </div>
 
-        <div className="space-y-6 lg:pt-8">
-          <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-black/30">
+        <div className="min-w-0 grid gap-4 lg:gap-5">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/30">
             <img
               src="/Foto.jpg"
               alt="Jesús Pérez Bañobre"
-              className="h-full w-full object-cover"
+              className="aspect-[4/5] w-full object-cover"
             />
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/8 p-6 shadow-xl shadow-black/20 backdrop-blur">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-200">
-              Ahora mismo
-            </p>
+          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-black/20 backdrop-blur sm:col-span-3 lg:col-span-1">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-200">
+                Ahora mismo
+              </p>
 
-            <ul className="mt-5 space-y-3">
-              {currentWork.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-emerald-400" />
-                  <span className="text-sm leading-relaxed text-slate-200">{item}</span>
-                </li>
-              ))}
-            </ul>
+              <ul className="mt-5 space-y-3">
+                {currentWork.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-emerald-400" />
+                    <span className="text-sm leading-relaxed text-slate-200">{item}</span>
+                  </li>
+                ))}
+              </ul>
 
-            <p className="mt-5 text-sm text-blue-100/80">
-              Perfil actualizado en {lastUpdated}.
-            </p>
+              <p className="mt-5 text-sm text-sky-100/80">
+                Perfil actualizado en {lastUpdated}.
+              </p>
+            </div>
           </div>
         </div>
       </div>

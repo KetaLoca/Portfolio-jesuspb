@@ -11,5 +11,6 @@ DEPLOYMENT_NAME="${DEPLOYMENT_NAME:-portfolio}"
 docker build --platform linux/amd64 -t "${IMAGE_NAME}:${IMAGE_TAG}" .
 docker push "${IMAGE_NAME}:${IMAGE_TAG}"
 
+kubectl --context "${KUBE_CONTEXT}" apply -k k8s
 kubectl --context "${KUBE_CONTEXT}" -n "${NAMESPACE}" rollout restart "deployment/${DEPLOYMENT_NAME}"
 kubectl --context "${KUBE_CONTEXT}" -n "${NAMESPACE}" rollout status "deployment/${DEPLOYMENT_NAME}"
