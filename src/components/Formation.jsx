@@ -1,4 +1,4 @@
-import { FaGraduationCap, FaBook, FaSchool, FaLaptopCode } from "react-icons/fa";
+import { FaBook, FaGraduationCap, FaLaptopCode, FaSchool } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Formation = () => {
@@ -29,56 +29,57 @@ const Formation = () => {
   ];
 
   return (
-    <section id="formacion" className="w-full bg-gradient-to-b from-blue-300/50 to-gray-500 py-10">
+    <section id="formacion" className="w-full bg-gradient-to-b from-slate-800 to-slate-950 py-16 md:py-20">
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 flex items-center justify-center gap-3"
+          className="mb-12 max-w-3xl"
         >
-          <FaGraduationCap className="text-blue-600" />
-          Formación Académica
-        </motion.h2>
+          <h2 className="flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
+            <FaGraduationCap className="text-cyan-300" />
+            Formación Académica
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
+            La base académica con la que empecé a construir mi perfil técnico y sobre la que fui
+            ampliando experiencia en backend, producto e infraestructura.
+          </p>
+        </motion.div>
 
-        <div className="relative grid md:grid-cols-2 gap-8 gap-y-8 md:gap-x-16 lg:gap-x-24">
-          {/* Línea de tiempo decorativa */}
-          <div className="hidden md:block absolute left-1/2 w-1 bg-blue-200 h-full top-0 -translate-x-1/2" />
+        <div className="grid gap-6 lg:grid-cols-2">
 
           {formations.map((formacion, index) => (
-            <motion.div
+            <motion.article
               key={formacion.title}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              className={`relative group ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}
+              transition={{ delay: index * 0.08 }}
+              className="h-full"
             >
-              <div className={`p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 h-full
-                ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}
-              >
-                {/* Icono flotante */}
-                <div className={`absolute -top-4 ${index % 2 === 0 ? '-right-4 md:-right-8' : '-left-4 md:-left-8'}`}>
-                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl mr-1 ml-1">
+              <div className="flex h-full flex-col rounded-[1.75rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/15 backdrop-blur md:p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-400/30 bg-cyan-500/10 text-xl text-cyan-200">
                     {formacion.icon}
                   </div>
+                  <span className="rounded-full border border-white/10 bg-slate-950/60 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200">
+                    {formacion.year}
+                  </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">{formacion.title}</h3>
-                <span className="block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm mb-4 text-center">
-                  {formacion.year}
-                </span>
+                <h3 className="mt-6 text-2xl font-bold text-white">{formacion.title}</h3>
 
-                <div className="space-y-2">
+                <div className="mt-6 space-y-3">
                   {formacion.details.map((detail, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      {index % 2 !== 0 && <FaBook className="text-blue-400 mt-1 flex-shrink-0" />}
-                      <p className="text-gray-600">{detail}</p>
-                      {index % 2 === 0 && <FaBook className="text-blue-400 mt-1 flex-shrink-0" />}
+                    <div key={i} className="flex items-start gap-3 rounded-2xl border border-white/8 bg-slate-950/35 px-4 py-3">
+                      <FaBook className="mt-1 flex-shrink-0 text-cyan-300" />
+                      <p className="text-sm leading-relaxed text-slate-300 md:text-base">{detail}</p>
                     </div>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

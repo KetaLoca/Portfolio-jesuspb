@@ -1,17 +1,45 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+const sections = [
+    { id: 'sobre-mi', name: 'Sobre mí' },
+    { id: 'experiencia', name: 'Experiencia' },
+    { id: 'tecnologias', name: 'Tecnologías' },
+    { id: 'proyectos', name: 'Proyectos' },
+    { id: 'formacion', name: 'Formación' },
+];
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('sobre-mi');
     const headerRef = useRef(null);
 
-    const sections = [
-        { id: 'sobre-mi', name: 'Sobre mí' },
-        { id: 'experiencia', name: 'Experiencia' },
-        { id: 'tecnologias', name: 'Tecnologías' },
-        { id: 'proyectos', name: 'Proyectos' },
-        { id: 'formacion', name: 'Formación' },
-    ];
+    useEffect(() => {
+        const updateActiveSection = () => {
+            const headerHeight = headerRef.current?.offsetHeight || 0;
+            const scrollPosition = window.scrollY + headerHeight + 120;
+
+            let currentSection = sections[0].id;
+
+            sections.forEach((section) => {
+                const element = document.getElementById(section.id);
+
+                if (element && scrollPosition >= element.offsetTop) {
+                    currentSection = section.id;
+                }
+            });
+
+            setActiveSection(currentSection);
+        };
+
+        updateActiveSection();
+        window.addEventListener('scroll', updateActiveSection, { passive: true });
+        window.addEventListener('resize', updateActiveSection);
+
+        return () => {
+            window.removeEventListener('scroll', updateActiveSection);
+            window.removeEventListener('resize', updateActiveSection);
+        };
+    }, []);
 
     const handleScroll = (sectionId, event) => {
         const section = document.getElementById(sectionId);
