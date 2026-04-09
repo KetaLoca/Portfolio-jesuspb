@@ -63,9 +63,11 @@ const About = () => {
               soluciones que terminan usándose de verdad.
             </p>
             <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
-              He levantado y gestiono un cluster de Kubernetes bare metal en Hetzner, desarrollo
-              backend, diseño automatizaciones con OCR y n8n, y construyo agentes de IA cuando
-              encajan bien con el problema a resolver.
+              Trabajo con tecnologías como React, JavaScript, TypeScript, Node.js, Express,
+              PostgreSQL, Redis, Stripe, Docker, Kubernetes, Terraform, ArgoCD, GitHub Actions,
+              Ansible, n8n y más, según lo que necesite cada problema. Puedo llevar un producto
+              desde la idea inicial y el diseño técnico hasta el desarrollo, el despliegue y la
+              operación en producción real.
             </p>
           </div>
 

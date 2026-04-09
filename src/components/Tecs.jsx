@@ -44,7 +44,7 @@ const Tecs = () => {
         { name: "GitHub Actions", icon: <SiGithubactions />, color: "#2088FF" },
         { name: "Ansible", icon: <SiAnsible />, color: "#EE0000" },
         { name: "Git", icon: <FaGitAlt />, color: "#F05032" },
-        { name: "GitHub", icon: <FaGithub />, color: "#181717" },
+        { name: "GitHub", icon: <FaGithub />, color: "#FFFFFF" },
       ],
     },
   ];

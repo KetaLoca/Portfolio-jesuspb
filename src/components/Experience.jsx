@@ -4,11 +4,14 @@ import {
   SiArgo,
   SiDocker,
   SiExpress,
+  SiJavascript,
   SiKubernetes,
   SiN8N,
   SiPostgresql,
   SiReact,
+  SiRedis,
   SiTerraform,
+  SiTypescript,
 } from "react-icons/si";
 
 const formatMonthYear = (date) =>
@@ -62,17 +65,23 @@ const Experience = () => {
       periodDetail: `Desde el ${formatLongDate(synergiaStartDate)} hasta la actualidad`,
       meta: `${getDurationLabel(synergiaStartDate, currentDate)} en el rol · actualizado en ${formatMonthYear(currentDate)}`,
       summary:
-        "Responsabilidad directa sobre plataforma, despliegues y automatización, combinada con desarrollo backend y soluciones internas con IA.",
+        "Responsabilidad directa sobre plataforma, despliegues y automatización, combinada con desarrollo fullstack, backend y soluciones internas con IA.",
       technologies: [
+        { icon: <SiTypescript />, name: "TypeScript", color: "#3178C6" },
+        { icon: <SiJavascript />, name: "JavaScript", color: "#F7DF1E" },
+        { icon: <SiReact />, name: "React", color: "#61DAFB" },
+        { icon: <SiExpress />, name: "ExpressJS", color: "#6DB33F" },
         { icon: <SiKubernetes />, name: "Kubernetes", color: "#326CE5" },
         { icon: <SiDocker />, name: "Docker", color: "#2496ED" },
+        { icon: <SiPostgresql />, name: "PostgreSQL", color: "#336791" },
+        { icon: <SiRedis />, name: "Redis", color: "#DC382D" },
         { icon: <SiTerraform />, name: "Terraform", color: "#7B42BC" },
         { icon: <SiArgo />, name: "ArgoCD", color: "#EF7B4D" },
         { icon: <SiN8N />, name: "n8n", color: "#EA4B71" },
       ],
       responsibilities: [
         "He levantado y gestiono un cluster de Kubernetes bare metal en Hetzner para despliegues y operación real.",
-        "Desarrollo backend y piezas de plataforma que aceleran entregas y reducen trabajo manual.",
+        "Desarrollo frontend, backend y piezas de plataforma que aceleran entregas y reducen trabajo manual.",
         "Creo automatizaciones con OCR, agentes de IA y flujos integrados con herramientas y APIs del negocio.",
         "Mantengo ownership técnico sobre la fiabilidad del entorno, los despliegues y la evolución de la plataforma.",
       ],
@@ -134,7 +143,7 @@ const Experience = () => {
               transition={{ delay: index * 0.08 }}
               className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/20 backdrop-blur md:p-6"
             >
-              <div className="grid items-start gap-5 xl:grid-cols-[280px_minmax(0,1fr)]">
+              <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.72fr)]">
                 <div className="min-w-0 rounded-3xl border border-white/10 bg-slate-950/50 p-5">
                   <div className="flex flex-col items-start">
                     <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-400/40 bg-blue-500/10 text-xl font-bold text-white">
@@ -144,7 +153,7 @@ const Experience = () => {
                     <p className="mt-1 text-base text-blue-300 md:text-lg">{experience.role}</p>
                   </div>
 
-                  <div className="mt-5 space-y-3">
+                  <div className="mt-5 grid gap-3 md:grid-cols-2">
                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                       <div className="flex items-center gap-3 text-blue-300">
                         <FaCalendarAlt className="text-lg" />
@@ -188,7 +197,7 @@ const Experience = () => {
                   <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
                     Impacto
                   </p>
-                  <p className="mt-4 text-base leading-relaxed text-white md:text-lg">
+                  <p className="mt-4 max-w-2xl text-base leading-relaxed text-white md:text-lg">
                     {experience.summary}
                   </p>
 
