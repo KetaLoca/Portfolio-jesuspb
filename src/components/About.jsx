@@ -1,94 +1,122 @@
-import React from "react";
+import { FaEnvelope, FaPhone } from "react-icons/fa";
 
 const About = () => {
+  const lastUpdated = new Intl.DateTimeFormat("es-ES", {
+    month: "long",
+    year: "numeric",
+  }).format(new Date());
+
+  const highlights = [
+    {
+      value: "1+ año",
+      label: "de experiencia profesional entregando producto e infraestructura",
+    },
+    {
+      value: "Kubernetes bare metal",
+      label: "cluster levantado y operado por mí en Hetzner",
+    },
+    {
+      value: "Backend + IA",
+      label: "servicios, agentes y automatización con impacto real",
+    },
+  ];
+
+  const focusAreas = [
+    "Platform engineering",
+    "Kubernetes",
+    "Backend",
+    "Automatización con OCR",
+    "Agentes de IA",
+    "Infraestructura",
+  ];
+
+  const currentWork = [
+    "Opero infraestructura y despliegues sobre Kubernetes con ownership real de la plataforma.",
+    "Desarrollo backend y herramientas internas para acelerar procesos y entregas.",
+    "Diseño automatizaciones con OCR, workflows y agentes de IA conectados a necesidades de negocio.",
+  ];
+
   return (
     <section
       id="sobre-mi"
-      className="w-full bg-gradient-to-b from-gray-700 to-gray-800 py-12 md:py-16 lg:py-20 relative left-1/2 right-1/2 -translate-x-1/2"
+      className="relative left-1/2 right-1/2 w-full -translate-x-1/2 bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950 px-4 pb-16 pt-28 sm:px-6 md:pb-20 lg:px-8"
     >
-      <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 flex flex-col lg:flex-row items-center lg:items-start">
-        {/* Imagen en el lado izquierdo */}
-        <div className="hidden lg:block lg:w-1/3 mr-10 mt-7">
-          <img
-            src="/Foto.jpg"
-            alt="Jesús Pérez Bañobre"
-            className="rounded-lg shadow-lg"
-          />
-        </div>
+      <div className="mx-auto grid w-full max-w-6xl items-start gap-10 lg:grid-cols-[1.35fr_0.85fr]">
+        <div>
+          <span className="inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-100">
+            Platform Engineer · Backend · IA aplicada
+          </span>
 
-        {/* Contenido textual */}
-        <div className="lg:w-2/3 flex flex-col items-center lg:items-center justify-center">
-          {/* Texto descriptivo */}
-          <div className="mb-8 md:mb-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-5 mt-5">
+          <div className="mt-6 text-center lg:text-left">
+            <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
               Jesús Pérez Bañobre
-            </h2>
-            <p className="text-white text-base md:text-lg leading-relaxed">
-              Soy un desarrollador de software proactivo y con ganas de seguir creciendo.
-              He aprendido y sigo aprendiendo distintas tecnologías, por lo que cuento con una
-              buena base de conocimientos que me permiten adaptarme a cualquier marco de trabajo. 
-              Estoy principalmente enfocado al backend.
+            </h1>
+            <p className="mt-6 text-base leading-relaxed text-slate-200 md:text-lg">
+              Soy un ingeniero de software centrado en construir plataforma, backend y
+              automatizaciones útiles para negocio. Ya no me defino como un perfil junior:
+              llevo más de un año trabajando en entornos reales, tomando decisiones técnicas,
+              manteniendo infraestructura y entregando soluciones que llegan a producción.
             </p>
-            <p className="text-white text-base md:text-lg leading-relaxed mt-3">
-              Tengo varios proyectos personales
-              que demuestran mis aptitudes y mi capacidad para aprender y aplicar buenas prácticas.
-              En la sección "Proyectos" se pueden ver algunos de los más destacados, todos publicados
-              en repositorios públicos de GitHub, y alguno desplegado a producción con mi propio dominio y Kubernetes, incluyendo
-              este mismo portfolio.
+            <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
+              Actualmente trabajo en SynergIA como Platform Engineer. He levantado y gestiono
+              mi propio cluster de Kubernetes bare metal en Hetzner, desarrollo servicios
+              backend, creo agentes de IA y automatizo procesos con OCR y flujos que reducen
+              trabajo manual y tiempo operativo.
             </p>
           </div>
 
-          {/* Información de contacto */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mb-8 md:mb-12">
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {highlights.map((highlight) => (
+              <div
+                key={highlight.value}
+                className="rounded-2xl border border-white/10 bg-white/8 p-4 text-left shadow-lg shadow-black/10 backdrop-blur"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-200">
+                  {highlight.value}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-200">
+                  {highlight.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            {focusAreas.map((area) => (
+              <span
+                key={area}
+                className="rounded-full border border-white/10 bg-slate-900/70 px-4 py-2 text-sm text-slate-100"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
+
+          <div className="mb-8 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-start sm:gap-8 md:mb-12">
             <a
               href="mailto:xesuspb@gmail.com"
-              className="flex items-center text-gray-700 hover:text-indigo-600 transition-colors text-sm sm:text-base"
+              className="flex items-center text-sm text-slate-200 transition-colors hover:text-blue-300 sm:text-base"
             >
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
+              <FaEnvelope className="mr-2 h-4 w-4" />
               xesuspb@gmail.com
             </a>
 
-            <div className="hidden sm:block w-px h-6 bg-gray-300" />
+            <div className="hidden h-6 w-px bg-white/20 sm:block" />
 
             <a
               href="tel:+34647736793"
-              className="flex items-center text-gray-700 hover:text-indigo-600 transition-colors text-sm sm:text-base"
+              className="flex items-center text-sm text-slate-200 transition-colors hover:text-blue-300 sm:text-base"
             >
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
+              <FaPhone className="mr-2 h-4 w-4" />
               +34 647 736 793
             </a>
           </div>
 
-          {/* Botón CV */}
-          <div className="text-center">
+          <div className="text-center lg:text-left">
             <a
               href="/curriculum.pdf"
               download="JesusPerezBanobre_CV.pdf"
-              className="inline-flex items-center px-6 py-3 bg-green-800/80 hover:bg-green-900/70 text-white rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base"
+              className="inline-flex items-center rounded-lg bg-emerald-700/90 px-6 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-emerald-800 sm:text-base"
             >
               <svg
                 className="w-5 h-5 mr-2"
@@ -105,6 +133,35 @@ const About = () => {
               </svg>
               Descargar CV
             </a>
+          </div>
+        </div>
+
+        <div className="space-y-6 lg:pt-8">
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-black/30">
+            <img
+              src="/Foto.jpg"
+              alt="Jesús Pérez Bañobre"
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/8 p-6 shadow-xl shadow-black/20 backdrop-blur">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-200">
+              Ahora mismo
+            </p>
+
+            <ul className="mt-5 space-y-3">
+              {currentWork.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-emerald-400" />
+                  <span className="text-sm leading-relaxed text-slate-200">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-5 text-sm text-blue-100/80">
+              Perfil actualizado en {lastUpdated}.
+            </p>
           </div>
         </div>
       </div>

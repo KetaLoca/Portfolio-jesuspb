@@ -1,28 +1,19 @@
-import React from 'react';
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('inicio');
+    const [activeSection, setActiveSection] = useState('sobre-mi');
     const headerRef = useRef(null);
 
     const sections = [
         { id: 'sobre-mi', name: 'Sobre mí' },
-        { id: 'proyectos', name: 'Proyectos' },
-        { id: 'tecnologias', name: 'Tecnologías' },
-        { id: 'formacion', name: 'Formación' },
         { id: 'experiencia', name: 'Experiencia' },
+        { id: 'tecnologias', name: 'Tecnologías' },
+        { id: 'proyectos', name: 'Proyectos' },
+        { id: 'formacion', name: 'Formación' },
     ];
 
-    // const handleScroll = (sectionId) => {
-    //     const section = document.getElementById(sectionId);
-    //     if (section) {
-    //         section.scrollIntoView({ behavior: 'smooth' });
-    //         setActiveSection(sectionId);
-    //     }
-    // };
-
-    const handleScroll = (sectionId, e) => {
+    const handleScroll = (sectionId, event) => {
         const section = document.getElementById(sectionId);
         if (section) {
             const headerHeight = headerRef.current?.offsetHeight || 0;
@@ -32,39 +23,39 @@ const Header = () => {
                 top: sectionPosition,
                 behavior: 'smooth'
             });
+
+            setActiveSection(sectionId);
         }
-        e.target.blur()
+
+        event?.currentTarget?.blur();
     };
 
     return (
-        <header ref={headerRef} className="fixed w-full top-0 left-0 z-50 bg-blue-900/70 backdrop-blur-sm">
+        <header ref={headerRef} className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
             <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center h-16 relative">
-                    {/* Botón Hamburguesa (izquierda) */}
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none"
+                        className="rounded-lg p-2 text-slate-200 hover:bg-white/10 focus:outline-none md:hidden"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
 
-                    {/* Texto/Logo Centrado (solo móvil) */}
-                    <span className="md:hidden absolute left-1/2 -translate-x-1/2 text-xl font-bold text-white-900">
-                        Desarrollador Fullstack
+                    <span className="absolute left-1/2 -translate-x-1/2 text-sm font-semibold tracking-[0.2em] text-slate-100 md:hidden">
+                        PLATFORM ENGINEER
                     </span>
 
-                    {/* Menú Desktop (centrado) */}
-                    <div className="hidden md:flex justify-center flex-1 space-x-8">
+                    <div className="hidden flex-1 justify-center gap-3 md:flex">
                         {sections.map((section) => (
                             <button
                                 key={section.id}
                                 onClick={(e) => handleScroll(section.id, e)}
                                 className={`${activeSection === section.id
-                                    ? 'text-indigo-600 border-b-2 border-indigo-600'
-                                    : 'text-gray-600 hover:text-indigo-600 transition-colors'
-                                    } px-3 py-2 text-sm font-medium`}
+                                    ? 'bg-white text-slate-950'
+                                    : 'text-slate-200 hover:bg-white/10 hover:text-white transition-colors'
+                                    } rounded-full px-4 py-2 text-sm font-medium`}
                             >
                                 {section.name}
                             </button>
@@ -72,17 +63,16 @@ const Header = () => {
                     </div>
                 </div>
 
-                {/* Menú Desplegable Mobile */}
                 {isMenuOpen && (
-                    <div className="md:hidden py-4 space-y-2">
+                    <div className="space-y-2 pb-4 md:hidden">
                         {sections.map((section) => (
                             <button
                                 key={section.id}
-                                onClick={() => {
-                                    handleScroll(section.id);
+                                onClick={(event) => {
+                                    handleScroll(section.id, event);
                                     setIsMenuOpen(false);
                                 }}
-                                className="w-full block px-4 py-2 text-left text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                                className="block w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-left text-slate-200 transition-colors hover:bg-white/10"
                             >
                                 {section.name}
                             </button>

@@ -9,13 +9,13 @@ import Tecs from './components/Tecs.jsx'
 function App() {
 
   return (
-    <div className="relative w-full overflow-x-hidden mx-auto max-w-[100vw]">
+    <div className="relative mx-auto w-full max-w-[100vw] overflow-x-hidden bg-slate-950">
       <Header />
       <About />
-      <Projects />
-      <Tecs />
-      <Formation />
       <Experience />
+      <Tecs />
+      <Projects />
+      <Formation />
     </div>
   )
 }

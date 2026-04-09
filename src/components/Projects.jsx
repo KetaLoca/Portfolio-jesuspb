@@ -9,7 +9,7 @@ const Projects = () => {
         {
             id: 1,
             title: "CrazyWeekEnd - FRONTEND",
-            description: "Página web que permite ofertar y alquilar casas rurales. La aplicación demuestra que entiendo las herramientas que ofrece React: React Router, useState(), useEffect(), useContext(), etc...",
+            description: "Frontend de una plataforma para ofertar y alquilar casas rurales. Refleja mi capacidad para construir interfaces de producto con React, routing, estado y una experiencia responsive cuidada.",
             image: "/frontend-buscador.png",
             deployment: "https://crazyweekend570.jesuspb.dev",
             github: "https://github.com/KetaLoca/CrazyWeekEnd"
@@ -17,7 +17,7 @@ const Projects = () => {
         {
             id: 2,
             title: "CrazyWeekEnd - BACKEND",
-            description: "API Rest hecha con ExpressJS y PostgreSQL siguiendo buenas prácticas: patrón de diseño MVC, passwords hasheadas con bcrypt, Jwebtokens, cookies, integridad en la base de datos, etc...",
+            description: "API REST construida con ExpressJS y PostgreSQL, aplicando buenas prácticas de arquitectura, autenticación, integridad de datos y separación clara de responsabilidades.",
             image: "/backend.png",
             deployment: "https://backend.jesuspb.dev/alojamientos",
             github: "https://github.com/KetaLoca/CrazyWeekEnd_API_Express"
@@ -25,14 +25,14 @@ const Projects = () => {
         {
             id: 3,
             title: "Despliegue Docker + Kubernetes",
-            description: "Tengo un clúster de kubernetes alojado en DigitalOcean, y en ese clúster he desplegado el frontend de mi APP, el backend y mi portfolio. Está desplegado con mis propios dominios, subdominios y cifrado SSL.",
+            description: "He levantado y opero un cluster bare metal de Kubernetes en Hetzner donde despliego servicios propios con dominios, subdominios, TLS y automatización del ciclo de despliegue.",
             image: "/kubernetes.png",
             github: "https://github.com/KetaLoca/k8s-CrazyWeekEnd"
         },
         {
             id: 4,
             title: "PORTFOLIO - Jesús Pérez Bañobre",
-            description: 'Aunque estoy más enfocado al backend, creo que este portfolio demuestra mi capacidad para trabajar también en el frontend usando React y Tailwindcss para crear una buena web con "responsive design" y un diseño amigable',
+            description: 'Este portfolio también forma parte de mi stack real: frontend en React, contenedorización con Docker y despliegue en Kubernetes dentro de mi entorno personal.',
             image: "/portfolio.png",
             github: "https://github.com/KetaLoca/Portfolio-jesuspb",
         },
@@ -60,54 +60,67 @@ const Projects = () => {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 }
         },
-        className: "w-full h-full py-12 px-4"
+        className: "w-full h-full py-10"
     };
 
     return (
-        <section id='proyectos' className="w-screen overflow-hidden bg-gradient-to-b from-blue-300/50 to-gray-500">
-            <Swiper {...swiperProps}>
-                {projects.map((project) => (
-                    <SwiperSlide key={project.id}>
-                        <div className="h-[500px] bg-gradient-to-b from-gray-700 to-gray-800 rounded-xl shadow-lg m-4 overflow-hidden flex flex-col mb-8 mt-6">
-                            {/* Imagen con overlay */}
-                            <div className="relative h-64 max-h-54">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                            </div>
+        <section id='proyectos' className="w-full overflow-hidden bg-gradient-to-b from-blue-300/50 to-gray-500 px-4 py-16 sm:px-6 md:px-8">
+            <div className="mx-auto max-w-6xl">
+                <div className="max-w-3xl">
+                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-700">
+                        Proyectos
+                    </p>
+                    <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">
+                        Trabajo personal que aterriza mi perfil técnico
+                    </h2>
+                    <p className="mt-4 text-base leading-relaxed text-slate-800 md:text-lg">
+                        Estos proyectos muestran la combinación de producto, backend e infraestructura
+                        con la que trabajo hoy. No son solo demos visuales: varios han estado o siguen
+                        estando desplegados en entornos reales.
+                    </p>
+                </div>
 
-                            {/* Contenido */}
-                            <div className="p-6 flex-1 flex flex-col">
-                                <h3 className="text-xl text-green-700/80 font-bold mb-3">{project.title}</h3>
-                                <p className="text-white mb-4 flex-1">{project.description}</p>
+                <Swiper {...swiperProps}>
+                    {projects.map((project) => (
+                        <SwiperSlide key={project.id}>
+                            <div className="mb-8 mt-6 flex h-[500px] flex-col overflow-hidden rounded-xl bg-gradient-to-b from-gray-700 to-gray-800 shadow-lg">
+                                <div className="relative h-64 max-h-54">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                </div>
 
-                                {/* Botones */}
-                                <div className="flex gap-3 mt-auto">
-                                    {project.deployment && (
-                                        <button
-                                            onClick={() => { handleOnClick(project.deployment) }}
-                                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex-1 text-center"
-                                        >
-                                            Ver Demo
-                                        </button>
-                                    )}
-                                    {project.github && (
-                                        <button
-                                            onClick={() => { handleOnClick(project.github) }}
-                                            className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors flex-1 text-center"
-                                        >
-                                            GitHub
-                                        </button>
-                                    )}
+                                <div className="flex flex-1 flex-col p-6">
+                                    <h3 className="mb-3 text-xl font-bold text-emerald-300">{project.title}</h3>
+                                    <p className="mb-4 flex-1 text-white">{project.description}</p>
+
+                                    <div className="mt-auto flex gap-3">
+                                        {project.deployment && (
+                                            <button
+                                                onClick={() => { handleOnClick(project.deployment) }}
+                                                className="flex-1 rounded-lg bg-blue-600 px-4 py-2 text-center text-white transition-colors hover:bg-blue-700"
+                                            >
+                                                Ver Demo
+                                            </button>
+                                        )}
+                                        {project.github && (
+                                            <button
+                                                onClick={() => { handleOnClick(project.github) }}
+                                                className="flex-1 rounded-lg bg-gray-800 px-4 py-2 text-center text-white transition-colors hover:bg-gray-900"
+                                            >
+                                                GitHub
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
         </section>
     );
 };

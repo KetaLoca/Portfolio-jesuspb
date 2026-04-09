@@ -3,33 +3,33 @@ import { motion } from "framer-motion";
 
 const Formation = () => {
   const formations = [
-    {
-      title: "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma",
-      year: "2022-2024",
-      icon: <FaLaptopCode />,
-      details: [
-        "Desarrollo de aplicaciones Android",
-        "Programación en Java, Kotlin y C#",
-        "Diseño de interfaces multiplataforma",
-        "Gestión de bases de datos relacionales",
-        "Programación orientada a objetos",
-        "Integración de APIs REST"
-      ]
-    },
-    {
-      title: "Bachillerato de Ciencias",
-      year: "2019-2021",
-      icon: <FaSchool />,
-      details: [
-        "Inglés B1",
-        "Matemáticas avanzadas",
-        "Física",
-      ]
-    }
+      {
+        title: "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma",
+        year: "2022-2024",
+        icon: <FaLaptopCode />,
+        details: [
+          "Desarrollo de aplicaciones multiplataforma y web",
+          "Programación orientada a objetos y diseño de software",
+          "Diseño de interfaces multiplataforma",
+          "Gestión de bases de datos relacionales",
+          "Integración de APIs REST",
+          "Base técnica sólida para backend, producto e infraestructura"
+        ]
+      },
+      {
+        title: "Bachillerato de Ciencias",
+        year: "2019-2021",
+        icon: <FaSchool />,
+        details: [
+          "Inglés B1 para documentación y comunicación técnica",
+          "Matemáticas avanzadas",
+          "Física",
+        ]
+      }
   ];
 
   return (
-    <section id="formacion" className="w-screen bg-gradient-to-b from-blue-300/50 to-gray-500 py-10 px-20 md:px-8">
+    <section id="formacion" className="w-full bg-gradient-to-b from-blue-300/50 to-gray-500 px-4 py-10 sm:px-6 md:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
