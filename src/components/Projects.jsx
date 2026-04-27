@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaExternalLinkAlt } from 'react-icons/fa';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -9,27 +9,35 @@ const Projects = () => {
     const projects = [
         {
             id: 1,
+            title: "Keta-MC / Minecraft Platform",
+            tag: "Platform",
+            description: "Plataforma self-hosted para crear y operar servidores Minecraft en Kubernetes. Combina API TypeScript/Express, RBAC multi-organización, PostgreSQL, Redis/BullMQ, worker reconciliador y frontend React. Los servidores Vanilla y Forge se provisionan en mi cluster bare metal y quedan accesibles por subdominio propio.",
+            image: "/CapturaPlataforma.png",
+            demoUrl: "https://minecraft-platform.apps.ketaloca.dev",
+        },
+        {
+            id: 2,
             title: "CrazyWeekEnd - FRONTEND",
             tag: "Frontend",
             description: "Frontend de una plataforma para ofertar y alquilar casas rurales. Refleja mi capacidad para construir interfaces de producto con React, routing, estado y una experiencia responsive cuidada.",
             image: "/frontend-buscador.png",
         },
         {
-            id: 2,
+            id: 3,
             title: "CrazyWeekEnd - BACKEND",
             tag: "Backend",
             description: "API REST construida con ExpressJS y PostgreSQL, aplicando buenas prácticas de arquitectura, autenticación, integridad de datos y separación clara de responsabilidades.",
             image: "/backend.png",
         },
         {
-            id: 3,
+            id: 4,
             title: "Despliegue Docker + Kubernetes",
             tag: "Platform",
             description: "He levantado y opero un cluster bare metal de Kubernetes en Hetzner donde despliego servicios propios con dominios, subdominios, TLS y automatización del ciclo de despliegue.",
             image: "/kubernetes.png",
         },
         {
-            id: 4,
+            id: 5,
             title: "PORTFOLIO - Jesús Pérez Bañobre",
             tag: "Portfolio",
             description: 'Este portfolio también forma parte de mi stack real: frontend en React, contenedorización con Docker y despliegue en Kubernetes dentro de mi entorno personal.',
@@ -37,7 +45,7 @@ const Projects = () => {
         },
 
         {
-            id: 5,
+            id: 6,
             title: "CrazyWeekEnd - Android APP",
             tag: "Mobile",
             description: "Para mi tfg desarrollé una APP de booking de casas rurales pero para Android nativo usando Kotlin y Firebase para el backend. Es anterior a la APP web y tiene menos funcionalidades.",
@@ -78,7 +86,7 @@ const Projects = () => {
                 <Swiper {...swiperProps}>
                     {projects.map((project) => (
                         <SwiperSlide key={project.id}>
-                            <div className="mb-8 mt-2 flex h-[540px] flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/20 backdrop-blur">
+                            <div className="mb-8 mt-2 flex h-[590px] flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/20 backdrop-blur">
                                 <div className="relative h-60">
                                     <img
                                         src={project.image}
@@ -94,6 +102,17 @@ const Projects = () => {
                                 <div className="flex flex-1 flex-col p-6">
                                     <h3 className="mb-3 text-xl font-bold text-white">{project.title}</h3>
                                     <p className="flex-1 text-sm leading-relaxed text-slate-300 md:text-base">{project.description}</p>
+                                    {project.demoUrl ? (
+                                        <a
+                                            href={project.demoUrl}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-4 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-300"
+                                        >
+                                            Probar plataforma
+                                            <FaExternalLinkAlt className="h-3 w-3" />
+                                        </a>
+                                    ) : null}
                                 </div>
                             </div>
                         </SwiperSlide>
