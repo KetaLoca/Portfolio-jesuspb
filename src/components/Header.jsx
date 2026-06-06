@@ -45,7 +45,15 @@ const Header = () => {
         const section = document.getElementById(sectionId);
         if (section) {
             const headerHeight = headerRef.current?.offsetHeight || 0;
-            const sectionPosition = section.offsetTop - headerHeight;
+            // Cada sección lleva un padding superior amplio (pt-28/pt-36). Si saltamos
+            // al borde de la sección, ese padding queda como banda vacía bajo el header.
+            // Consumimos ese padding y dejamos solo un hueco cómodo y constante.
+            const paddingTop = parseFloat(window.getComputedStyle(section).paddingTop) || 0;
+            const gap = 28;
+            const sectionPosition = Math.max(
+                section.offsetTop + paddingTop - headerHeight - gap,
+                0
+            );
 
             window.scrollTo({
                 top: sectionPosition,
