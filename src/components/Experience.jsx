@@ -148,16 +148,16 @@ const Experience = () => {
               <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.72fr)]">
                 <div className="min-w-0 rounded-3xl border border-white/10 bg-slate-950/50 p-5">
                   <div className="flex flex-col items-start">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-400/40 bg-blue-500/10 text-xl font-bold text-white">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-400/40 bg-cyan-500/10 text-xl font-bold text-white">
                       {experience.initials}
                     </div>
                     <h3 className="mt-4 text-2xl font-bold text-white">{experience.company}</h3>
-                    <p className="mt-1 text-base text-blue-300 md:text-lg">{experience.role}</p>
+                    <p className="mt-1 text-base text-cyan-300 md:text-lg">{experience.role}</p>
                   </div>
 
                   <div className="mt-5 grid gap-3 md:grid-cols-2">
                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                      <div className="flex items-center gap-3 text-blue-300">
+                      <div className="flex items-center gap-3 text-cyan-300">
                         <FaCalendarAlt className="text-lg" />
                         <span className="text-sm font-medium uppercase tracking-[0.2em]">
                           Período
@@ -169,11 +169,11 @@ const Experience = () => {
                       <p className="mt-2 text-sm leading-relaxed text-slate-300">
                         {experience.periodDetail}
                       </p>
-                      <p className="mt-3 text-sm text-blue-100/80">{experience.meta}</p>
+                      <p className="mt-3 text-sm text-cyan-100/80">{experience.meta}</p>
                     </div>
 
                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                      <div className="flex items-center gap-3 text-blue-300">
+                      <div className="flex items-center gap-3 text-cyan-300">
                         <FaTools className="text-lg" />
                         <span className="text-sm font-medium uppercase tracking-[0.2em]">
                           Stack principal
@@ -196,7 +196,7 @@ const Experience = () => {
                 </div>
 
                 <div className="min-w-0 self-start rounded-3xl border border-white/10 bg-white/5 p-5 md:p-6">
-                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-200">
+                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">
                     Impacto
                   </p>
                   <p className="mt-4 max-w-2xl text-base leading-relaxed text-white md:text-lg">
@@ -211,7 +211,7 @@ const Experience = () => {
                         className="rounded-2xl border border-white/10 bg-slate-950/40 p-4 transition-colors duration-300 hover:bg-slate-950/60"
                       >
                         <div className="flex items-start gap-3">
-                          <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-blue-600/30 text-sm text-blue-300">
+                          <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-cyan-600/30 text-sm text-cyan-300">
                             {responsibilityIndex + 1}
                           </div>
                           <p className="text-sm leading-relaxed text-slate-200">

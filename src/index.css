@@ -25,6 +25,25 @@ h3 {
   letter-spacing: -0.02em;
 }
 
+/* Rejilla tipo "blueprint" para dar atmósfera al hero. Se desvanece con una
+   máscara radial desde arriba para que no compita con el contenido. */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(125, 211, 252, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(125, 211, 252, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 95% 70% at 55% 0%,
+    #000 25%,
+    transparent 82%
+  );
+  mask-image: radial-gradient(
+    ellipse 95% 70% at 55% 0%,
+    #000 25%,
+    transparent 82%
+  );
+}
+
 html,
 body,
 #root {

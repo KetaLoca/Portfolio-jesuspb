@@ -22,7 +22,7 @@ const Tecs = () => {
       title: "Desarrollo",
       description:
         "Backend, APIs e integraciones de producto.",
-      accent: "from-emerald-500/15 to-cyan-500/10",
+      accent: "from-cyan-500/12 to-blue-500/5",
       technologies: [
         { name: "Node.js", icon: <FaNode />, color: "#339933" },
         { name: "ExpressJS", icon: <SiExpress />, color: "#FFFFFF" },
@@ -38,7 +38,7 @@ const Tecs = () => {
       title: "Platform & Cloud",
       description:
         "Infraestructura, despliegue y entrega continua del cluster.",
-      accent: "from-blue-500/15 to-violet-500/10",
+      accent: "from-blue-500/12 to-cyan-500/5",
       technologies: [
         { name: "Docker", icon: <FaDocker />, color: "#2496ED" },
         { name: "Kubernetes", icon: <SiKubernetes />, color: "#326CE5" },
