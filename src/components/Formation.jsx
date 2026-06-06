@@ -13,7 +13,6 @@ const Formation = () => {
           "Diseño de interfaces multiplataforma",
           "Gestión de bases de datos relacionales",
           "Integración de APIs REST",
-          "Base técnica sólida para backend, producto e infraestructura"
         ]
       },
       {
@@ -42,8 +41,7 @@ const Formation = () => {
             Formación Académica
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
-            La base académica con la que empecé a construir mi perfil técnico y sobre la que fui
-            ampliando experiencia en backend, producto e infraestructura.
+            Mi base académica antes de orientarme a backend e infraestructura.
           </p>
         </motion.div>
 

@@ -37,7 +37,7 @@ const Projects = () => {
             id: 2,
             title: "CrazyWeekEnd - FRONTEND",
             tag: "Frontend",
-            description: "Frontend de una plataforma para ofertar y alquilar casas rurales. Refleja mi capacidad para construir interfaces de producto con React, routing, estado y una experiencia responsive cuidada.",
+            description: "Frontend de una plataforma de alquiler de casas rurales, construido con React, routing y gestión de estado, consumiendo la API del proyecto.",
             image: "/frontend-buscador.png",
         },
         {
@@ -49,16 +49,16 @@ const Projects = () => {
         },
         {
             id: 4,
-            title: "Despliegue Docker + Kubernetes",
+            title: "Cluster Kubernetes personal (IaC)",
             tag: "Platform",
-            description: "He levantado y opero un cluster bare metal de Kubernetes en Hetzner donde despliego servicios propios con dominios, subdominios, TLS y automatización del ciclo de despliegue.",
+            description: "Cluster Kubernetes que provisiono con Terraform y configuro con Ansible, con GitOps sobre ArgoCD, TLS automático y dominios propios. Es la base sobre la que despliego el resto de mis proyectos.",
             image: "/kubernetes.png",
         },
         {
             id: 5,
             title: "PORTFOLIO - Jesús Pérez Bañobre",
             tag: "Portfolio",
-            description: 'Este portfolio también forma parte de mi stack real: frontend en React, contenedorización con Docker y despliegue en Kubernetes dentro de mi entorno personal.',
+            description: 'Este mismo portfolio: React, empaquetado con Docker y desplegado en mi cluster Kubernetes personal.',
             image: "/portfolio.png",
         },
 
@@ -66,7 +66,7 @@ const Projects = () => {
             id: 6,
             title: "CrazyWeekEnd - Android APP",
             tag: "Mobile",
-            description: "Para mi tfg desarrollé una APP de booking de casas rurales pero para Android nativo usando Kotlin y Firebase para el backend. Es anterior a la APP web y tiene menos funcionalidades.",
+            description: "Mi TFG: app nativa de Android (Kotlin + Firebase) para reserva de casas rurales. Anterior a la versión web y con menos funcionalidades.",
             image: "/FutureMainActivity.png",
         }
     ];
@@ -92,12 +92,11 @@ const Projects = () => {
                             Proyectos
                         </p>
                         <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
-                            Trabajo personal que aterriza mi perfil técnico
+                            Proyectos propios sobre mi propia infraestructura
                         </h2>
                         <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
-                            Estos proyectos muestran la combinación de producto, backend e infraestructura
-                            con la que trabajo hoy. No son solo demos visuales: varios han estado o siguen
-                            estando desplegados en entornos reales.
+                            Una selección de trabajo propio entre producto, backend e infraestructura.
+                            Varios siguen desplegados y accesibles en mi cluster personal.
                         </p>
                     </div>
                     <div className="hidden shrink-0 gap-3 md:flex">

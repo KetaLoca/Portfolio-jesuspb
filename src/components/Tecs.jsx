@@ -1,13 +1,16 @@
-import { FaDocker, FaGitAlt, FaGithub, FaNode, FaReact } from "react-icons/fa";
+import { FaDocker, FaNode, FaReact } from "react-icons/fa";
 import {
   SiArgo,
   SiAnsible,
   SiExpress,
   SiGithubactions,
+  SiGrafana,
+  SiHelm,
   SiJavascript,
   SiKubernetes,
   SiN8N,
   SiPostgresql,
+  SiPrometheus,
   SiRedis,
   SiStripe,
   SiTerraform,
@@ -18,7 +21,7 @@ const Tecs = () => {
     {
       title: "Desarrollo",
       description:
-        "Las tecnologías con las que construyo producto, backend, integraciones y automatizaciones.",
+        "Backend, APIs e integraciones de producto.",
       accent: "from-emerald-500/15 to-cyan-500/10",
       technologies: [
         { name: "Node.js", icon: <FaNode />, color: "#339933" },
@@ -34,17 +37,18 @@ const Tecs = () => {
     {
       title: "Platform & Cloud",
       description:
-        "La capa con la que despliego, opero infraestructura y mantengo el flujo de entrega.",
+        "Infraestructura, despliegue y entrega continua del cluster.",
       accent: "from-blue-500/15 to-violet-500/10",
       technologies: [
         { name: "Docker", icon: <FaDocker />, color: "#2496ED" },
         { name: "Kubernetes", icon: <SiKubernetes />, color: "#326CE5" },
         { name: "Terraform", icon: <SiTerraform />, color: "#7B42BC" },
+        { name: "Ansible", icon: <SiAnsible />, color: "#EE0000" },
         { name: "ArgoCD", icon: <SiArgo />, color: "#EF7B4D" },
         { name: "GitHub Actions", icon: <SiGithubactions />, color: "#2088FF" },
-        { name: "Ansible", icon: <SiAnsible />, color: "#EE0000" },
-        { name: "Git", icon: <FaGitAlt />, color: "#F05032" },
-        { name: "GitHub", icon: <FaGithub />, color: "#FFFFFF" },
+        { name: "Helm", icon: <SiHelm />, color: "#0F1689" },
+        { name: "Prometheus", icon: <SiPrometheus />, color: "#E6522C" },
+        { name: "Grafana", icon: <SiGrafana />, color: "#F46800" },
       ],
     },
   ];
@@ -63,8 +67,8 @@ const Tecs = () => {
             Tecnologías con las que trabajo hoy
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
-            Mi stack ha evolucionado hacia plataforma, backend y automatización. Aquí están
-            las herramientas que mejor representan el tipo de trabajo que hago ahora.
+            El stack con el que trabajo a diario, repartido entre el desarrollo de producto y la
+            operación de la plataforma.
           </p>
         </div>
 

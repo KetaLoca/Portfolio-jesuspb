@@ -12,34 +12,28 @@ const About = () => {
       label: "Platform Engineer desde julio de 2025",
     },
     {
-      value: "Kubernetes bare metal",
-      label: "cluster levantado y operado por mí en Hetzner",
+      value: "Kubernetes en HA",
+      label: "cluster bare metal en Hetzner, levantado y operado por mí",
     },
     {
       value: "Backend + IA",
-      label: "servicios internos, OCR y agentes conectados a negocio",
+      label: "servicios internos, OCR y agentes conectados al negocio",
     },
   ];
 
   const focusAreas = [
-    "Backend",
-    "React",
     "Node.js",
-    "Redis",
-    "Stripe",
+    "PostgreSQL",
     "Kubernetes",
     "Terraform",
     "ArgoCD",
-    "GitHub Actions",
-    "Ansible",
-    "n8n",
-    "Agentes de IA",
+    "CI/CD",
   ];
 
   const currentWork = [
-    "Plataforma, despliegues y operación diaria sobre Kubernetes.",
+    "Operación diaria del cluster: despliegues, fiabilidad y evolución de la plataforma.",
     "Desarrollo backend y herramientas internas para producto y equipo.",
-    "Automatización de procesos con OCR, n8n y agentes de IA.",
+    "Procesos automatizados con OCR, n8n y agentes de IA.",
   ];
 
   return (
@@ -55,19 +49,18 @@ const About = () => {
 
           <div className="mt-6 text-left">
             <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
-              Platform Engineer con foco en backend, Kubernetes y automatización
+              Platform Engineer centrado en backend, Kubernetes y entrega continua
             </h1>
             <p className="mt-6 text-base leading-relaxed text-slate-200 md:text-lg">
-              Trabajo en SynergIA en un rol muy transversal: plataforma, desarrollo backend y
-              automatización. Mi día a día mezcla despliegues, operación, servicios internos y
-              soluciones que terminan usándose de verdad.
+              Trabajo en SynergIA desde 2025 en un rol transversal entre desarrollo backend y
+              plataforma. Me ocupo del ciclo completo de los servicios internos: diseño técnico,
+              implementación, despliegue y operación en producción.
             </p>
             <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
-              Trabajo con tecnologías como React, JavaScript, TypeScript, Node.js, Express,
-              PostgreSQL, Redis, Stripe, Docker, Kubernetes, Terraform, ArgoCD, GitHub Actions,
-              Ansible, n8n y más, según lo que necesite cada problema. Puedo llevar un producto
-              desde la idea inicial y el diseño técnico hasta el desarrollo, el despliegue y la
-              operación en producción real.
+              Levanté y opero el cluster Kubernetes en alta disponibilidad sobre el que corre el
+              producto, con GitOps en ArgoCD, observabilidad con Prometheus y Grafana, y políticas
+              de seguridad y copias de seguridad gestionadas como código. En la capa de producto
+              construyo APIs e integraciones, varias apoyadas en OCR y agentes de IA.
             </p>
           </div>
 

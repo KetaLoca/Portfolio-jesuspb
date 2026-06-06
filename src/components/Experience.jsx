@@ -65,7 +65,7 @@ const Experience = () => {
       periodDetail: `Desde el ${formatLongDate(synergiaStartDate)} hasta la actualidad`,
       meta: `${getDurationLabel(synergiaStartDate, currentDate)} en el rol · actualizado en ${formatMonthYear(currentDate)}`,
       summary:
-        "Responsabilidad directa sobre plataforma, despliegues y automatización, combinada con desarrollo fullstack, backend y soluciones internas con IA.",
+        "Propiedad técnica de la plataforma y de los despliegues, junto con desarrollo backend y herramientas internas para el equipo.",
       technologies: [
         { icon: <SiTypescript />, name: "TypeScript", color: "#3178C6" },
         { icon: <SiJavascript />, name: "JavaScript", color: "#F7DF1E" },
@@ -80,10 +80,10 @@ const Experience = () => {
         { icon: <SiN8N />, name: "n8n", color: "#EA4B71" },
       ],
       responsibilities: [
-        "He levantado y gestiono un cluster de Kubernetes bare metal en Hetzner para despliegues y operación real.",
-        "Desarrollo frontend, backend y piezas de plataforma que aceleran entregas y reducen trabajo manual.",
-        "Creo automatizaciones con OCR, agentes de IA y flujos integrados con herramientas y APIs del negocio.",
-        "Mantengo ownership técnico sobre la fiabilidad del entorno, los despliegues y la evolución de la plataforma.",
+        "Levanté desde cero y opero un cluster Kubernetes en alta disponibilidad sobre bare metal en Hetzner, provisionado con Terraform y Ansible.",
+        "Implanté el flujo de entrega: GitOps con ArgoCD, CI con GitHub Actions y despliegues progresivos, partiendo de despliegues manuales.",
+        "Monté la capa de operación: observabilidad con Prometheus y Grafana, políticas con Kyverno, y gestión de secretos y backups como código.",
+        "Desarrollo backend y automatizaciones internas con OCR, agentes de IA e integraciones con las APIs del negocio.",
       ],
     },
     {
@@ -94,7 +94,7 @@ const Experience = () => {
       periodDetail: "Primera experiencia profesional en entorno de producto",
       meta: "Base sólida en desarrollo fullstack, APIs y trabajo con datos",
       summary:
-        "Etapa en la que consolidé experiencia construyendo features fullstack y trabajando con frontend, backend y base de datos.",
+        "Primera etapa profesional desarrollando funcionalidades fullstack sobre frontend, backend y base de datos.",
       technologies: [
         { icon: <SiExpress />, name: "ExpressJS", color: "#6DB33F" },
         { icon: <SiReact />, name: "React", color: "#61DAFB" },
@@ -127,9 +127,8 @@ const Experience = () => {
             Experiencia Profesional
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
-            En SynergIA llevo un rol muy transversal entre plataforma, backend y automatización.
-            Es la parte del portfolio donde mejor se ve el tipo de responsabilidad técnica que
-            tengo ahora mismo.
+            Mi experiencia actual concentra el grueso de mi perfil: operación de plataforma y
+            desarrollo backend, con responsabilidad directa sobre producción.
           </p>
         </motion.div>
 
