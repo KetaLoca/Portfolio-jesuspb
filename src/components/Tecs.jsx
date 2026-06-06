@@ -56,7 +56,7 @@ const Tecs = () => {
   return (
     <section
       id="tecnologias"
-      className="w-full bg-gradient-to-b from-slate-950 to-slate-900 py-20 md:py-28"
+      className="w-full py-20 md:py-28"
     >
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
         <div className="mb-12 max-w-3xl">

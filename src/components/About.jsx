@@ -39,12 +39,11 @@ const About = () => {
   return (
     <section
       id="sobre-mi"
-      className="relative isolate w-full overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 pb-20 pt-28 md:pb-28 lg:pt-36"
+      className="relative isolate w-full overflow-hidden pb-20 pt-28 md:pb-28 lg:pt-36"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -right-24 -top-24 h-[36rem] w-[36rem] rounded-full bg-cyan-500/20 blur-[140px]" />
         <div className="absolute -bottom-24 -left-24 h-[28rem] w-[28rem] rounded-full bg-blue-600/10 blur-[140px]" />
-        <div className="hero-grid absolute inset-0" />
       </div>
 
       <div className="mx-auto grid w-full max-w-[1360px] gap-10 px-4 sm:px-6 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,380px)] lg:items-center lg:px-8">

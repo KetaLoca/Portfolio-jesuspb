@@ -28,7 +28,7 @@ const Formation = () => {
   ];
 
   return (
-    <section id="formacion" className="w-full bg-gradient-to-b from-slate-800 to-slate-950 py-20 md:py-28">
+    <section id="formacion" className="w-full py-20 md:py-28">
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

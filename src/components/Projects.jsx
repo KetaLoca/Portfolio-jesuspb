@@ -84,7 +84,7 @@ const Projects = () => {
     };
 
     return (
-        <section id='proyectos' className="w-full overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 py-20 md:py-28">
+        <section id='proyectos' className="w-full overflow-hidden py-20 md:py-28">
             <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
                 <div className="mb-12 flex items-end justify-between gap-6">
                     <div className="max-w-3xl">

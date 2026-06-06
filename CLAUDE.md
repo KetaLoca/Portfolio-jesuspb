@@ -26,13 +26,13 @@ SPA de **una sola página** (no hay router). `src/main.jsx` monta `App.jsx`, que
 2. El componente de la sección → su `<section id="...">` **debe** coincidir exacto con el `id` del paso 1 (ids actuales: `sobre-mi`, `experiencia`, `tecnologias`, `proyectos`, `formacion`).
 3. `src/App.jsx` → incluir el componente en el orden visual deseado.
 
-El scroll-spy de `Header.jsx` recorre las secciones y marca activa la última cuyo `offsetTop` ya pasó el scroll (con offset por la altura del header fijo). El header es `fixed`; el scroll suave lo gestiona `handleScroll` restando esa altura.
+El scroll-spy de `Header.jsx` recorre las secciones y marca activa la última cuyo `offsetTop` ya pasó el scroll (con offset por la altura del header fijo). El header es `fixed`; el scroll suave lo gestiona `handleScroll`, que además del alto del header descuenta el `padding-top` real de la sección (leído con `getComputedStyle`) para que el salto aterrice sobre el contenido y no sobre la banda vacía del padding superior.
 
 **Contenido hardcodeado.** No hay CMS, API ni fuente de datos externa. El contenido (proyectos, experiencia, tecnologías…) vive en arrays/JSX dentro de cada componente. Para editar el portfolio se edita directamente el componente correspondiente (p. ej. el array `projects` en `Projects.jsx`).
 
 **Imágenes** en `public/`, referenciadas por ruta absoluta (`/portfolio.png`). El carrusel de `Projects.jsx` usa **Swiper** (módulos `Navigation`/`Pagination`); las animaciones usan **framer-motion**; los iconos, **react-icons**.
 
-**Estilos.** Tailwind v4 vía el plugin `@tailwindcss/vite` (en `vite.config.js`) — **no hay `tailwind.config.js`**; se importa con `@import "tailwindcss"` en `src/index.css`. Convención de diseño: fondo oscuro `slate-950`, acento `cyan`, y cada sección encadena su gradiente con la siguiente (`to-slate-800` → `from-slate-800`…) para una transición continua; mantén esa cadena al insertar secciones. `overflow-x-clip` se repite en varios niveles para evitar scroll horizontal.
+**Estilos.** Tailwind v4 vía el plugin `@tailwindcss/vite` (en `vite.config.js`) — **no hay `tailwind.config.js`**; se importa con `@import "tailwindcss"` en `src/index.css`. Convención de diseño: fondo oscuro `slate-950`, acento `cyan`. El fondo es una **atmósfera global continua**: una capa `fixed inset-0 -z-10` en `App.jsx` con la rejilla tenue `.app-grid` (definida en `index.css`) más varios resplandores cyan/azul; las secciones van **translúcidas** (sin fondo propio) y dejan ver ese lienzo. Por eso, al añadir una sección **no** le pongas un `bg-gradient` opaco — déjala transparente para no tapar el fondo global. El hero (`About.jsx`) conserva resplandores propios más marcados como énfasis. `overflow-x-clip` se repite en varios niveles para evitar scroll horizontal.
 
 ## Despliegue
 
