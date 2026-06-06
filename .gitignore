@@ -15,6 +15,9 @@ dist-ssr
 # Playwright MCP (capturas y logs de pruebas locales)
 .playwright-mcp/
 
+# Config MCP local (rutas personales: ejecutable Brave y perfil dedicado)
+.mcp.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
