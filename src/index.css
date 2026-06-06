@@ -60,3 +60,12 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
+
+/* Carrusel de proyectos: igualar la altura de todas las tarjetas visibles.
+   La slide de Swiper se hace flex (su CSS por defecto la deja en block y
+   gana en especificidad a las utilities de Tailwind), de modo que la tarjeta
+   interna (flex-1) se estire a la altura de la slide más alta de la fila. */
+#proyectos .swiper-slide {
+  display: flex;
+  height: auto;
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" role="img" aria-label="Helm charts seguros para agentes de IA en Kubernetes">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#0891b2" stop-opacity="0.08"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="480" fill="url(#bg)"/>
+  <rect width="800" height="480" fill="url(#glow)"/>
+
+  <!-- hexagonos tenues (k8s) -->
+  <g fill="none" stroke="#67e8f9" stroke-opacity="0.12" stroke-width="2">
+    <polygon points="120,150 150,167 150,201 120,218 90,201 90,167"/>
+    <polygon points="680,150 710,167 710,201 680,218 650,201 650,167"/>
+    <polygon points="150,300 180,317 180,351 150,368 120,351 120,317"/>
+    <polygon points="650,300 680,317 680,351 650,368 620,351 620,317"/>
+    <polygon points="400,90 430,107 430,141 400,158 370,141 370,107"/>
+  </g>
+
+  <!-- escudo central -->
+  <g transform="translate(400,238)">
+    <path d="M0,-118 L96,-86 L96,18 C96,86 50,128 0,150 C-50,128 -96,86 -96,18 L-96,-86 Z"
+          fill="url(#shield)" stroke="#22d3ee" stroke-width="3" stroke-opacity="0.9"/>
+    <!-- candado -->
+    <g transform="translate(0,-6)">
+      <path d="M-26,-10 a26,26 0 0 1 52,0 v18 h-14 v-18 a12,12 0 0 0 -24,0 v18 h-14 Z" fill="#67e8f9"/>
+      <rect x="-34" y="6" width="68" height="54" rx="10" fill="#22d3ee"/>
+      <circle cx="0" cy="28" r="8" fill="#0f172a"/>
+      <rect x="-4" y="28" width="8" height="18" rx="4" fill="#0f172a"/>
+    </g>
+  </g>
+
+  <text x="400" y="430" text-anchor="middle" fill="#7dd3fc" font-family="ui-sans-serif,system-ui,Arial" font-size="22" letter-spacing="6" font-weight="700">HELM · KUBERNETES · SECURE BY DEFAULT</text>
+</svg>
