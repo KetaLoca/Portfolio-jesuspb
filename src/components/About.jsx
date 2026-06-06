@@ -140,7 +140,7 @@ const About = () => {
 
           <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-black/20 backdrop-blur sm:col-span-3 lg:col-span-1">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-200">
+              <p className="font-mono text-xs font-medium uppercase tracking-[0.25em] text-cyan-300">
                 Ahora mismo
               </p>
 

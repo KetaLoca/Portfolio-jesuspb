@@ -36,7 +36,10 @@ const Formation = () => {
           viewport={{ once: true }}
           className="mb-12 max-w-3xl"
         >
-          <h2 className="flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.25em] text-cyan-300">
+            Base
+          </p>
+          <h2 className="mt-3 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
             <FaGraduationCap className="text-cyan-300" />
             Formación Académica
           </h2>
