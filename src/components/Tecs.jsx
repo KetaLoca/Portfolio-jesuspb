@@ -1,4 +1,5 @@
 import { FaDocker, FaNode, FaReact } from "react-icons/fa";
+import { TbSailboat } from "react-icons/tb";
 import {
   SiArgo,
   SiAnsible,
@@ -6,14 +7,15 @@ import {
   SiGithubactions,
   SiGrafana,
   SiHelm,
-  SiJavascript,
   SiKubernetes,
   SiN8N,
   SiPostgresql,
   SiPrometheus,
   SiRedis,
   SiStripe,
+  SiTailwindcss,
   SiTerraform,
+  SiTypescript,
 } from "react-icons/si";
 
 const Tecs = () => {
@@ -28,9 +30,11 @@ const Tecs = () => {
         { name: "ExpressJS", icon: <SiExpress />, color: "#FFFFFF" },
         { name: "PostgreSQL", icon: <SiPostgresql />, color: "#336791" },
         { name: "Redis", icon: <SiRedis />, color: "#DC382D" },
-        { name: "Stripe", icon: <SiStripe />, color: "#635BFF" },
-        { name: "JavaScript", icon: <SiJavascript />, color: "#F7DF1E" },
+        { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6" },
+        { name: "LangChain", icon: <img src="/langchain.svg" alt="" className="h-6 w-6" />, color: "#2DD4BF" },
         { name: "React", icon: <FaReact />, color: "#61DAFB" },
+        { name: "Tailwind", icon: <SiTailwindcss />, color: "#38BDF8" },
+        { name: "Stripe", icon: <SiStripe />, color: "#635BFF" },
         { name: "n8n", icon: <SiN8N />, color: "#EA4B71" },
       ],
     },
@@ -49,6 +53,7 @@ const Tecs = () => {
         { name: "Helm", icon: <SiHelm />, color: "#0F1689" },
         { name: "Prometheus", icon: <SiPrometheus />, color: "#E6522C" },
         { name: "Grafana", icon: <SiGrafana />, color: "#F46800" },
+        { name: "Velero", icon: <TbSailboat />, color: "#00ACD7" },
       ],
     },
   ];
@@ -81,20 +86,23 @@ const Tecs = () => {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <h3 className="text-2xl font-semibold text-white">{group.title}</h3>
-                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300 md:text-base">
+                  {/* En xl las dos tarjetas van lado a lado; reservar 2 líneas
+                      evita que una descripción más larga baje su rejilla de techs
+                      y la descentre respecto a la otra columna. */}
+                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300 md:text-base xl:min-h-[3.5rem]">
                     {group.description}
                   </p>
                 </div>
-                <span className="rounded-full border border-white/10 bg-slate-950/50 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-slate-200">
+                <span className="self-start rounded-full border border-white/10 bg-slate-950/50 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-slate-200">
                   {group.technologies.length} tecnologías
                 </span>
               </div>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              <div className="mt-8 grid grid-cols-2 gap-2.5 sm:gap-3">
                 {group.technologies.map((tech) => (
                   <div
                     key={`${group.title}-${tech.name}`}
-                    className="min-w-0 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/55 px-4 py-4"
+                    className="min-w-0 flex items-center gap-2.5 rounded-2xl border border-white/10 bg-slate-950/55 px-3 py-3 sm:gap-3 sm:px-4 sm:py-4"
                   >
                     <span
                       className="text-2xl"
@@ -104,7 +112,7 @@ const Tecs = () => {
                     >
                       {tech.icon}
                     </span>
-                    <span className="min-w-0 text-sm font-medium text-white md:text-base">
+                    <span className="min-w-0 text-sm font-medium leading-tight text-white md:text-base">
                       {tech.name}
                     </span>
                   </div>

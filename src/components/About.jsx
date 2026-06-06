@@ -104,7 +104,7 @@ const About = () => {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap sm:gap-4">
             <a
               href="mailto:xesuspb@gmail.com"
               className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition-colors hover:border-cyan-400/40 hover:text-cyan-200 sm:text-base"
@@ -143,7 +143,12 @@ const About = () => {
         </div>
 
         <div className="min-w-0 grid gap-4 lg:gap-5">
-          <ProfilePhoto />
+          {/* En móvil/tablet la columna es full-width y la foto 4:5 se vuelve
+              enorme; la acotamos y centramos. En desktop (lg) la rejilla ya la
+              dimensiona, así que liberamos el ancho. */}
+          <div className="mx-auto w-full max-w-[280px] sm:max-w-[340px] lg:max-w-none">
+            <ProfilePhoto />
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-black/20 backdrop-blur sm:col-span-3 lg:col-span-1">

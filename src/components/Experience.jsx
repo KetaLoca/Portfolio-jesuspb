@@ -142,16 +142,20 @@ const Experience = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ delay: index * 0.08 }}
-              className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/20 backdrop-blur md:p-6"
+              className="rounded-3xl md:border md:border-white/10 md:bg-white/5 md:p-6 md:shadow-2xl md:shadow-black/20 md:backdrop-blur"
             >
               <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.72fr)]">
-                <div className="min-w-0 rounded-3xl border border-white/10 bg-slate-950/50 p-5">
-                  <div className="flex flex-col items-start">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-400/40 bg-cyan-500/10 text-xl font-bold text-white">
+                <div className="min-w-0 rounded-3xl md:border md:border-white/10 md:bg-slate-950/50 md:p-5">
+                  {/* Móvil: logo y nombre en la misma fila (compacto, sin huecos).
+                      Desktop (md): vuelve a columna como en el diseño original. */}
+                  <div className="flex items-center gap-4 md:flex-col md:items-start md:gap-0">
+                    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-cyan-400/40 bg-cyan-500/10 text-xl font-bold text-white">
                       {experience.initials}
                     </div>
-                    <h3 className="mt-4 text-2xl font-bold text-white">{experience.company}</h3>
-                    <p className="mt-1 text-base text-cyan-300 md:text-lg">{experience.role}</p>
+                    <div className="min-w-0 md:mt-4">
+                      <h3 className="text-2xl font-bold text-white">{experience.company}</h3>
+                      <p className="mt-1 text-base text-cyan-300 md:text-lg">{experience.role}</p>
+                    </div>
                   </div>
 
                   <div className="mt-5 grid gap-3 md:grid-cols-2">
@@ -194,7 +198,7 @@ const Experience = () => {
                   </div>
                 </div>
 
-                <div className="min-w-0 self-start rounded-3xl border border-white/10 bg-white/5 p-5 md:p-6">
+                <div className="min-w-0 self-start border-t border-white/10 pt-6 md:rounded-3xl md:border md:bg-white/5 md:p-6 md:pt-6">
                   <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">
                     Impacto
                   </p>

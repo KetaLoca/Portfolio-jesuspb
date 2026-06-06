@@ -70,12 +70,15 @@ const Header = () => {
     };
 
     return (
-        <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+        <>
+            <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
             <nav className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
                 <div ref={barRef} className="flex items-center h-16 relative">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="rounded-lg p-2 text-slate-200 hover:bg-white/10 focus:outline-none md:hidden"
+                        aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                        aria-expanded={isMenuOpen}
+                        className="-ml-1 rounded-lg p-2.5 text-slate-200 hover:bg-white/10 focus:outline-none md:hidden"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -102,24 +105,44 @@ const Header = () => {
                     </div>
                 </div>
 
-                {isMenuOpen && (
-                    <div className="space-y-2 pb-4 md:hidden">
-                        {sections.map((section) => (
-                            <button
-                                key={section.id}
-                                onClick={(event) => {
-                                    handleScroll(section.id, event);
-                                    setIsMenuOpen(false);
-                                }}
-                                className="block w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-left text-slate-200 transition-colors hover:bg-white/10"
-                            >
-                                {section.name}
-                            </button>
-                        ))}
+                </nav>
+            </header>
+
+            {isMenuOpen && (
+                <div className="md:hidden">
+                    {/* Overlay a viewport completo: atenúa el contenido y cierra al
+                        tocar fuera. Va FUERA del <header> a propósito: su
+                        backdrop-blur crea un containing block que atraparía un hijo
+                        `fixed`, recortándolo a la altura del header y dejando sin
+                        cubrir el contenido inferior. */}
+                    <div
+                        className="fixed inset-x-0 bottom-0 top-16 z-40 bg-slate-950/80 backdrop-blur-sm"
+                        onClick={() => setIsMenuOpen(false)}
+                        aria-hidden="true"
+                    />
+                    {/* Panel sólido anclado bajo la barra (no transparenta el fondo). */}
+                    <div className="fixed inset-x-0 top-16 z-50 border-t border-white/10 bg-slate-950/95 shadow-2xl shadow-black/40">
+                        <div className="mx-auto max-w-[1360px] space-y-2 px-4 py-4 sm:px-6">
+                            {sections.map((section) => (
+                                <button
+                                    key={section.id}
+                                    onClick={(event) => {
+                                        handleScroll(section.id, event);
+                                        setIsMenuOpen(false);
+                                    }}
+                                    className={`block w-full rounded-lg border px-4 py-3 text-left text-base transition-colors ${activeSection === section.id
+                                        ? 'border-cyan-400/40 bg-cyan-400/15 text-cyan-100'
+                                        : 'border-white/10 bg-white/5 text-slate-200 hover:bg-white/10'
+                                        }`}
+                                >
+                                    {section.name}
+                                </button>
+                            ))}
+                        </div>
                     </div>
-                )}
-            </nav>
-        </header>
+                </div>
+            )}
+        </>
     );
 };
 
