@@ -1,4 +1,4 @@
-import { FaCalendarAlt, FaCode, FaTools } from "react-icons/fa";
+import { FaCalendarAlt, FaTools } from "react-icons/fa";
 import { motion } from "framer-motion";
 import {
   SiArgo,
@@ -113,7 +113,7 @@ const Experience = () => {
   return (
     <section
       id="experiencia"
-      className="w-full bg-gradient-to-br from-slate-900 via-slate-950 to-black py-16"
+      className="w-full bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950 py-20 md:py-28"
     >
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
         <motion.div
@@ -125,8 +125,7 @@ const Experience = () => {
           <p className="font-mono text-xs font-medium uppercase tracking-[0.25em] text-cyan-300">
             Trayectoria
           </p>
-          <h2 className="mt-3 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
-            <FaCode className="text-cyan-400" />
+          <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
             Experiencia Profesional
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">

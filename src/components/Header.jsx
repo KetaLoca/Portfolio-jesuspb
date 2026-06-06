@@ -60,7 +60,7 @@ const Header = () => {
 
     return (
         <header ref={headerRef} className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-            <nav className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+            <nav className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
                 <div className="flex items-center h-16 relative">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -81,7 +81,7 @@ const Header = () => {
                                 key={section.id}
                                 onClick={(e) => handleScroll(section.id, e)}
                                 className={`${activeSection === section.id
-                                    ? 'bg-white text-slate-950'
+                                    ? 'bg-cyan-400 text-slate-950'
                                     : 'text-slate-200 hover:bg-white/10 hover:text-white transition-colors'
                                     } rounded-full px-4 py-2 text-sm font-medium`}
                             >

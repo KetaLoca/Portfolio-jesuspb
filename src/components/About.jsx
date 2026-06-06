@@ -39,7 +39,7 @@ const About = () => {
   return (
     <section
       id="sobre-mi"
-      className="relative isolate w-full overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 pb-16 pt-28 md:pb-20 lg:pt-32"
+      className="relative isolate w-full overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 pb-20 pt-28 md:pb-28 lg:pt-36"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -right-24 -top-24 h-[36rem] w-[36rem] rounded-full bg-cyan-500/20 blur-[140px]" />

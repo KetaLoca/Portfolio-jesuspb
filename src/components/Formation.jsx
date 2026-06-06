@@ -1,4 +1,4 @@
-import { FaBook, FaGraduationCap, FaLaptopCode, FaSchool } from "react-icons/fa";
+import { FaBook, FaLaptopCode, FaSchool } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Formation = () => {
@@ -28,7 +28,7 @@ const Formation = () => {
   ];
 
   return (
-    <section id="formacion" className="w-full bg-gradient-to-b from-slate-800 to-slate-950 py-16 md:py-20">
+    <section id="formacion" className="w-full bg-gradient-to-b from-slate-800 to-slate-950 py-20 md:py-28">
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,8 +39,7 @@ const Formation = () => {
           <p className="font-mono text-xs font-medium uppercase tracking-[0.25em] text-cyan-300">
             Base
           </p>
-          <h2 className="mt-3 flex items-center gap-3 text-3xl font-bold text-white md:text-4xl">
-            <FaGraduationCap className="text-cyan-300" />
+          <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
             Formación Académica
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
