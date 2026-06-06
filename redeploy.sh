@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-IMAGE_NAME="${IMAGE_NAME:-xesuspb/portfolio}"
+IMAGE_NAME="${IMAGE_NAME:-ghcr.io/ketaloca/portfolio}"
 IMAGE_TAG="${IMAGE_TAG:-latest}"
 KUBE_CONTEXT="${KUBE_CONTEXT:-personal-k3s}"
 NAMESPACE="${NAMESPACE:-portfolio}"

@@ -43,6 +43,6 @@ Imagen Docker **multi-stage**: `node:22-slim` compila el build → `nginx:1.28-a
 `redeploy.sh` orquesta build (`--platform linux/amd64`) + push + `kubectl apply -k k8s` + `rollout restart`. Manifests en `k8s/` aplicados con **kustomize**.
 
 - Contexto k8s: `personal-k3s` · namespace `portfolio` · deployment `portfolio`
-- **Imagen: `xesuspb/portfolio:latest` en Docker Hub** (ojo: este repo NO usa `ghcr.io/ketaloca`; es la excepción al patrón personal habitual)
+- **Imagen: `ghcr.io/ketaloca/portfolio:latest` en GHCR**, paquete **público** (así el cluster lo descarga sin `imagePullSecret`). Push autenticado con `docker login ghcr.io -u KetaLoca` (PAT con `write:packages`)
 - Ingress: traefik + cert-manager (`letsencrypt-prod`), hosts `ketaloca.dev` y `jesuspb-portfolio.ketaloca.dev`
 - Todos los parámetros de `redeploy.sh` son overrideables por variable de entorno (`IMAGE_NAME`, `KUBE_CONTEXT`, etc.)
