@@ -33,6 +33,9 @@ h3 {
     linear-gradient(to right, rgba(125, 211, 252, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
   background-size: 56px 56px;
+  /* Parallax de scroll: la rejilla deriva hacia arriba, más lento que el
+     contenido. Vía background-position → infinito, sin huecos en los bordes. */
+  background-position: 0 calc(var(--sy, 0) * -0.15px);
 }
 
 /* Resplandores tipo "aurora": derivan y mutan despacio en bucle. El color
@@ -46,15 +49,15 @@ h3 {
   will-change: transform;
 }
 .atmo-aura--a {
-  background-color: rgba(var(--aura-a, 34, 211, 238), 0.14);
+  background-color: rgba(var(--aura-a, 34, 211, 238), 0.18);
   animation: aura-drift-a 26s ease-in-out infinite;
 }
 .atmo-aura--b {
-  background-color: rgba(var(--aura-b, 37, 99, 235), 0.13);
+  background-color: rgba(var(--aura-b, 37, 99, 235), 0.16);
   animation: aura-drift-b 32s ease-in-out infinite;
 }
 .atmo-aura--c {
-  background-color: rgba(var(--aura-a, 34, 211, 238), 0.09);
+  background-color: rgba(var(--aura-a, 34, 211, 238), 0.11);
   animation: aura-drift-c 38s ease-in-out infinite;
 }
 
@@ -71,6 +74,14 @@ h3 {
 @keyframes aura-drift-c {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
   50% { transform: translate3d(5%, -7%, 0) scale(0.9); }
+}
+
+/* Parallax de scroll para los glows: derivan hacia arriba más lento aún que
+   la rejilla (capa más "profunda"). Son difusos y mayores que el viewport,
+   así que el translate no muestra bordes. */
+.atmo-aura-scroll {
+  transform: translate3d(0, calc(var(--sy, 0) * -0.05px), 0);
+  will-change: transform;
 }
 
 /* Parallax: el lienzo completo se desplaza levemente según el cursor
@@ -95,6 +106,13 @@ h3 {
   }
   .atmo-parallax {
     transition: none;
+  }
+  /* Sin parallax de scroll (puede inducir mareo). */
+  .app-grid {
+    background-position: 0 0;
+  }
+  .atmo-aura-scroll {
+    transform: none;
   }
 }
 
