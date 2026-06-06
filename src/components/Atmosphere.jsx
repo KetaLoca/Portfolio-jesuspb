@@ -17,12 +17,25 @@ const SECTION_ACCENTS = {
 
 const SECTION_IDS = Object.keys(SECTION_ACCENTS);
 
+// Dispositivo táctil sin puntero fino (móvil/tablet sin ratón). En estos
+// desactivamos ambos parallax: el de cursor desplaza la capa al arrastrar para
+// scrollear, y el de scroll provoca lagazos (repintado de rejilla + recomposición
+// de glows con blur por frame) y un "snap" feo en los nodos. La detección por
+// puntero es más fiable que por ancho (no afecta a portátiles con pantalla táctil).
+const isCoarsePointer = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
 /**
- * Atmósfera global reactiva: rejilla blueprint + spotlight que sigue al cursor,
- * aurora animada con tinte por sección, constelación de partículas en canvas y
- * parallax sutil. Todo detrás de un único pointermove (throttled con rAF) y un
- * único bucle de canvas, que se pausa al ocultar la pestaña. Respeta
- * prefers-reduced-motion.
+ * Atmósfera global reactiva: rejilla blueprint, aurora animada con tinte por
+ * sección, constelación de partículas en canvas (la única capa reactiva al
+ * cursor) y parallax doble (cursor + scroll). Todo detrás de un pointermove y
+ * un scroll (throttled con rAF) y un único bucle de canvas, que se pausa al
+ * ocultar la pestaña. Respeta prefers-reduced-motion.
+ *
+ * En táctil (sin puntero fino) se degrada para garantizar un scroll fluido:
+ * ambos parallax desactivados, glows estáticos (CSS), DPR más bajo y canvas
+ * estabilizado frente al resize de la barra de URL. El canvas sigue animado.
  */
 const Atmosphere = () => {
   const rootRef = useRef(null);
@@ -30,10 +43,12 @@ const Atmosphere = () => {
   // Puntero normalizado (0..1) y en px, compartido entre listener y bucle.
   const pointer = useRef({ nx: 0.5, ny: 0.5, px: 0, py: 0, active: false });
 
-  // ---- Spotlight + parallax: pointermove throttled con rAF ----
+  // ---- Parallax de cursor: pointermove throttled con rAF ----
+  // En táctil no se monta: el arrastre para scrollear dispara pointermove y
+  // desplazaría toda la capa de fondo (rejilla + glows) de forma molesta.
   useEffect(() => {
     const root = rootRef.current;
-    if (!root) return;
+    if (!root || isCoarsePointer()) return;
 
     let frame = 0;
     const apply = () => {
@@ -67,9 +82,12 @@ const Atmosphere = () => {
   // lento que el contenido, a distintas velocidades (glows < rejilla < nodos)
   // para dar sensación de profundidad. `--sy` mueve rejilla y glows por CSS;
   // el canvas lee pointer.current.scroll. Un solo listener, throttled con rAF. ----
+  // En táctil no se monta: el parallax de scroll es la principal fuente de
+  // lagazos (repinta la rejilla y recompone los glows en cada frame) y del
+  // "baile" de los nodos al envolver. El fondo queda fijo y el scroll, fluido.
   useEffect(() => {
     const root = rootRef.current;
-    if (!root) return;
+    if (!root || isCoarsePointer()) return;
 
     let frame = 0;
     const apply = () => {
@@ -133,9 +151,11 @@ const Atmosphere = () => {
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    const mobile = isCoarsePointer();
 
     let width = 0;
     let height = 0;
+    let prevW = -1;
     let dpr = 1;
     let particles = [];
     let raf = 0;
@@ -145,8 +165,14 @@ const Atmosphere = () => {
     const CURSOR_DIST = 150; // radio de repulsión/realce del cursor
 
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
+      const newW = window.innerWidth;
+      // En móvil, ignora los cambios de SOLO alto: la barra de URL aparece/
+      // desaparece al hacer scroll y dispararía un resize que re-siembra el
+      // campo de nodos (se "baraja"). Solo re-medimos al cambiar el ancho.
+      if (mobile && particles.length && newW === width) return;
+
+      dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
+      width = newW;
       height = window.innerHeight;
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
@@ -154,15 +180,20 @@ const Atmosphere = () => {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Densidad ~ área, capada para no disparar el coste en pantallas grandes.
-      const target = Math.min(Math.round((width * height) / 13000), 95);
-      particles = Array.from({ length: target }, (_, i) => ({
-        // Posición pseudo-aleatoria determinista (sin Math.random global):
-        x: ((i * 137.5) % width),
-        y: ((i * 263.1) % height),
-        vx: (((i % 7) - 3) / 14) || 0.05,
-        vy: (((i % 5) - 2) / 14) || 0.04,
-      }));
+      // Re-siembra solo en el primer paso o al cambiar el ancho (orientación):
+      // así el campo no se baraja en cada resize.
+      if (!particles.length || newW !== prevW) {
+        prevW = newW;
+        // Densidad ~ área, capada para no disparar el coste en pantallas grandes.
+        const target = Math.min(Math.round((width * height) / 13000), 95);
+        particles = Array.from({ length: target }, (_, i) => ({
+          // Posición pseudo-aleatoria determinista (sin Math.random global):
+          x: ((i * 137.5) % width),
+          y: ((i * 263.1) % height),
+          vx: (((i % 7) - 3) / 14) || 0.05,
+          vy: (((i % 5) - 2) / 14) || 0.04,
+        }));
+      }
     };
 
     const step = () => {
@@ -170,7 +201,7 @@ const Atmosphere = () => {
       const { px, py, active } = pointer.current;
       // Parallax de scroll: los nodos derivan hacia arriba al bajar, más lento
       // que el contenido. Con wrap [0,height) para que el campo no se agote.
-      const scrollOff = reduced ? 0 : ((pointer.current.scroll || 0) * 0.25) % height;
+      const scrollOff = reduced || mobile ? 0 : ((pointer.current.scroll || 0) * 0.25) % height;
 
       // Posiciones en pantalla (con el offset de scroll aplicado). Se usan para
       // dibujar, para la interacción con el cursor y para las conexiones.

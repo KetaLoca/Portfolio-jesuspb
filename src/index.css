@@ -116,6 +116,32 @@ h3 {
   }
 }
 
+/* Táctil (móvil/tablet sin ratón): prioriza un scroll fluido. El JS ya
+   desactiva ambos parallax; aquí pausamos la deriva animada de los glows
+   (el blur grande recompuesto por frame es lo más caro en GPU móvil) y
+   reducimos el radio de blur. El tinte por sección se mantiene (la
+   transición de background-color es barata) y el canvas sigue vivo. */
+@media (hover: none) and (pointer: coarse) {
+  .atmo-aura {
+    filter: blur(100px);
+  }
+  .atmo-aura--a,
+  .atmo-aura--b,
+  .atmo-aura--c {
+    animation: none;
+  }
+  .app-grid {
+    background-position: 0 0;
+  }
+  .atmo-aura-scroll {
+    transform: none;
+  }
+  .atmo-parallax {
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Rejilla tipo "blueprint" para dar atmósfera al hero. Se desvanece con una
    máscara radial desde arriba para que no compita con el contenido. */
 .hero-grid {

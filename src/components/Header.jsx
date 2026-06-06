@@ -11,11 +11,14 @@ const sections = [
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('sobre-mi');
-    const headerRef = useRef(null);
+    // Medimos la BARRA (h-16, altura fija) y no el <header> completo: en móvil,
+    // con el menú abierto, el header crece con la lista de enlaces y falsearía
+    // el offset de scroll (saltos a posición incorrecta al pulsar un enlace).
+    const barRef = useRef(null);
 
     useEffect(() => {
         const updateActiveSection = () => {
-            const headerHeight = headerRef.current?.offsetHeight || 0;
+            const headerHeight = barRef.current?.offsetHeight || 0;
             const scrollPosition = window.scrollY + headerHeight + 120;
 
             let currentSection = sections[0].id;
@@ -44,7 +47,7 @@ const Header = () => {
     const handleScroll = (sectionId, event) => {
         const section = document.getElementById(sectionId);
         if (section) {
-            const headerHeight = headerRef.current?.offsetHeight || 0;
+            const headerHeight = barRef.current?.offsetHeight || 0;
             // Cada sección lleva un padding superior amplio (pt-28/pt-36). Si saltamos
             // al borde de la sección, ese padding queda como banda vacía bajo el header.
             // Consumimos ese padding y dejamos solo un hueco cómodo y constante.
@@ -67,9 +70,9 @@ const Header = () => {
     };
 
     return (
-        <header ref={headerRef} className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+        <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
             <nav className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
-                <div className="flex items-center h-16 relative">
+                <div ref={barRef} className="flex items-center h-16 relative">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="rounded-lg p-2 text-slate-200 hover:bg-white/10 focus:outline-none md:hidden"
