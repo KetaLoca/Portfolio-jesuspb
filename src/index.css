@@ -35,6 +35,69 @@ h3 {
   background-size: 56px 56px;
 }
 
+/* Resplandores tipo "aurora": derivan y mutan despacio en bucle. El color
+   viene de CSS vars (--aura-a/--aura-b) que cambian por sección con una
+   transición suave → así recuperamos distinción entre secciones al hacer
+   scroll sin volver a bloques de fondo opacos. */
+.atmo-aura {
+  border-radius: 9999px;
+  filter: blur(170px);
+  transition: background-color 1.4s ease;
+  will-change: transform;
+}
+.atmo-aura--a {
+  background-color: rgba(var(--aura-a, 34, 211, 238), 0.14);
+  animation: aura-drift-a 26s ease-in-out infinite;
+}
+.atmo-aura--b {
+  background-color: rgba(var(--aura-b, 37, 99, 235), 0.13);
+  animation: aura-drift-b 32s ease-in-out infinite;
+}
+.atmo-aura--c {
+  background-color: rgba(var(--aura-a, 34, 211, 238), 0.09);
+  animation: aura-drift-c 38s ease-in-out infinite;
+}
+
+@keyframes aura-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(6%, 8%, 0) scale(1.12); }
+  66% { transform: translate3d(-5%, 4%, 0) scale(0.95); }
+}
+@keyframes aura-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  40% { transform: translate3d(-7%, -6%, 0) scale(1.1); }
+  70% { transform: translate3d(4%, -3%, 0) scale(0.96); }
+}
+@keyframes aura-drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(5%, -7%, 0) scale(0.9); }
+}
+
+/* Parallax: el lienzo completo se desplaza levemente según el cursor
+   (--px/--py normalizados 0..1). Suavizado con transición corta. */
+.atmo-parallax {
+  transition: transform 0.25s ease-out;
+  transform: translate3d(
+    calc((var(--px, 0.5) - 0.5) * -22px),
+    calc((var(--py, 0.5) - 0.5) * -22px),
+    0
+  );
+}
+
+/* Accesibilidad/rendimiento: sin animación automática si el usuario lo pide.
+   El spotlight y el parallax (reactivos al puntero, no autónomos) se mantienen,
+   pero la aurora deja de derivar y el canvas se dibuja estático (en JS). */
+@media (prefers-reduced-motion: reduce) {
+  .atmo-aura--a,
+  .atmo-aura--b,
+  .atmo-aura--c {
+    animation: none;
+  }
+  .atmo-parallax {
+    transition: none;
+  }
+}
+
 /* Rejilla tipo "blueprint" para dar atmósfera al hero. Se desvanece con una
    máscara radial desde arriba para que no compita con el contenido. */
 .hero-grid {
