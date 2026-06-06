@@ -194,3 +194,230 @@ button {
   display: flex;
   height: auto;
 }
+
+/* ===========================================================================
+   Easter egg "420 / Deal with it" (ver src/components/ProfilePhoto.jsx)
+   12 clicks rápidos sobre la foto → glitch cyberpunk + gafas y porro humeante.
+   POSICIONES afinables: gafas con --eg-x/y/w, porro con --ej-x/y/w/rot.
+   Todas las animaciones se neutralizan con prefers-reduced-motion (al final).
+   =========================================================================== */
+.eg-photo {
+  /* calibrado sobre Foto.jpg (4:5): ojos ~34% desde arriba, boca ~55% */
+  --eg-x: 51%; /* centro horizontal de las gafas */
+  --eg-y: 34%; /* altura de los ojos */
+  --eg-w: 46%; /* ancho de las gafas (% del contenedor) */
+  --ej-x: 35%; /* centro del porro */
+  --ej-y: 60%;
+  --ej-w: 38%; /* largo del porro */
+  --ej-rot: -10deg; /* inclinación (negativo: brasa cae a la izquierda) */
+  --ej-flip: -1; /* espejo del PNG para llevar la brasa al lado exterior */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  will-change: transform;
+}
+
+/* Feedback de carga: tiembla más cuanto mayor es --eg-charge (0..1, desde JS) */
+.eg-photo--charging {
+  animation: eg-charge-shake 0.16s linear infinite;
+}
+@keyframes eg-charge-shake {
+  0%, 100% {
+    transform: translate3d(calc(var(--eg-charge, 0) * -2px), 0, 0)
+      rotate(calc(var(--eg-charge, 0) * -0.25deg));
+  }
+  25% {
+    transform: translate3d(calc(var(--eg-charge, 0) * 2px), calc(var(--eg-charge, 0) * -1px), 0)
+      rotate(calc(var(--eg-charge, 0) * 0.25deg));
+  }
+  50% {
+    transform: translate3d(calc(var(--eg-charge, 0) * -1.5px), calc(var(--eg-charge, 0) * 1px), 0);
+  }
+  75% {
+    transform: translate3d(calc(var(--eg-charge, 0) * 1.5px), 0, 0);
+  }
+}
+
+/* --- Glitch: jitter de la base + dos capas RGB desplazadas en franjas ------ */
+.eg-photo--glitch .eg-img {
+  animation: eg-glitch-skew 0.45s steps(2) infinite;
+}
+@keyframes eg-glitch-skew {
+  0%, 100% { transform: translate3d(0, 0, 0) skewX(0deg); }
+  20% { transform: translate3d(-2%, 0, 0) skewX(7deg); }
+  40% { transform: translate3d(2%, 0, 0) skewX(-6deg); }
+  60% { transform: translate3d(-1%, 0, 0) skewX(3deg); }
+  80% { transform: translate3d(1.5%, 0, 0) skewX(-2deg); }
+}
+
+.eg-rgb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+.eg-rgb--r {
+  filter: brightness(0.95) sepia(1) hue-rotate(-58deg) saturate(6);
+  animation: eg-glitch-r 0.5s steps(2) infinite;
+}
+.eg-rgb--c {
+  filter: brightness(0.95) sepia(1) hue-rotate(150deg) saturate(6);
+  animation: eg-glitch-c 0.5s steps(2) infinite;
+}
+@keyframes eg-glitch-r {
+  0%, 100% { clip-path: inset(0 0 86% 0); transform: translate3d(-6%, 0, 0); }
+  20% { clip-path: inset(58% 0 20% 0); transform: translate3d(5%, 0, 0); }
+  40% { clip-path: inset(30% 0 55% 0); transform: translate3d(-4%, 0, 0); }
+  60% { clip-path: inset(80% 0 4% 0); transform: translate3d(6%, 0, 0); }
+  80% { clip-path: inset(14% 0 70% 0); transform: translate3d(-5%, 0, 0); }
+}
+@keyframes eg-glitch-c {
+  0%, 100% { clip-path: inset(72% 0 14% 0); transform: translate3d(6%, 0, 0); }
+  20% { clip-path: inset(20% 0 60% 0); transform: translate3d(-5%, 0, 0); }
+  40% { clip-path: inset(50% 0 32% 0); transform: translate3d(4%, 0, 0); }
+  60% { clip-path: inset(4% 0 82% 0); transform: translate3d(-6%, 0, 0); }
+  80% { clip-path: inset(66% 0 18% 0); transform: translate3d(5%, 0, 0); }
+}
+
+/* Scanlines + leve barrido, durante glitch y estado activo */
+.eg-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0.22) 1px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.45;
+  animation: eg-scan 7s linear infinite;
+}
+.eg-photo--glitch .eg-scanlines { opacity: 0.7; }
+@keyframes eg-scan {
+  from { background-position-y: 0; }
+  to { background-position-y: 100px; }
+}
+
+/* Tinte de ambiente verde/ámbar cuando está activo */
+.eg-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    160deg,
+    rgba(132, 204, 22, 0.12),
+    rgba(16, 185, 129, 0.04) 50%,
+    rgba(245, 158, 11, 0.12)
+  );
+  mix-blend-mode: soft-light;
+}
+
+/* --- Gafas Thug Life (PNG): caen desde arriba y se asientan ----------------- */
+.eg-glasses {
+  position: absolute;
+  left: var(--eg-x);
+  top: var(--eg-y);
+  width: var(--eg-w);
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.55));
+  transform: translate(-50%, -50%);
+  animation: eg-glasses-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.05s both;
+}
+@keyframes eg-glasses-in {
+  0% { transform: translate(-50%, -280%) rotate(-12deg); opacity: 0; }
+  55% { transform: translate(-50%, -36%) rotate(5deg); opacity: 1; }
+  78% { transform: translate(-50%, -56%) rotate(-2deg); }
+  100% { transform: translate(-50%, -50%) rotate(0deg); opacity: 1; }
+}
+
+/* --- Porro (PNG con brasa): aparece desde la boca y humea ------------------- */
+.eg-joint {
+  position: absolute;
+  left: var(--ej-x);
+  top: var(--ej-y);
+  width: var(--ej-w);
+  pointer-events: none;
+  transform-origin: center;
+  transform: translate(-50%, -50%) rotate(var(--ej-rot));
+  animation: eg-joint-in 0.5s ease 0.35s both;
+}
+.eg-joint__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scaleX(var(--ej-flip, 1));
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.55));
+}
+@keyframes eg-joint-in {
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--ej-rot)) scale(0.55); }
+  100% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--ej-rot)) scale(1); }
+}
+/* Humo saliendo de la brasa (lado exterior del PNG ya espejado) */
+.eg-smoke {
+  position: absolute;
+  left: 12%;
+  bottom: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(226, 232, 235, 0.5), rgba(226, 232, 235, 0));
+  filter: blur(2px);
+  animation: eg-smoke-rise 2.6s ease-out infinite;
+}
+.eg-smoke--2 { animation-delay: 0.85s; }
+.eg-smoke--3 { animation-delay: 1.7s; }
+@keyframes eg-smoke-rise {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  15% { opacity: 0.55; }
+  100% { opacity: 0; transform: translate(-6px, -52px) scale(2.6); }
+}
+
+/* Badge tipo terminal */
+.eg-badge {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 4px 9px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #a7f3d0;
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  animation: eg-badge-in 0.4s ease 0.2s both, eg-badge-flicker 3s steps(1) 0.6s infinite;
+}
+@keyframes eg-badge-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes eg-badge-flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97% { opacity: 0.35; }
+  98% { opacity: 1; }
+  99% { opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eg-photo--charging,
+  .eg-photo--glitch .eg-img,
+  .eg-rgb,
+  .eg-glasses,
+  .eg-joint,
+  .eg-badge,
+  .eg-scanlines {
+    animation: none !important;
+  }
+  .eg-glasses { transform: translate(-50%, -50%); opacity: 1; }
+  .eg-joint {
+    transform: translate(-50%, -50%) rotate(var(--ej-rot));
+    opacity: 1;
+  }
+  .eg-smoke { display: none; }
+}

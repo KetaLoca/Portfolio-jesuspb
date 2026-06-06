@@ -1,4 +1,5 @@
 import { FaEnvelope, FaPhone } from "react-icons/fa";
+import ProfilePhoto from "./ProfilePhoto";
 
 const About = () => {
   const lastUpdated = new Intl.DateTimeFormat("es-ES", {
@@ -142,19 +143,7 @@ const About = () => {
         </div>
 
         <div className="min-w-0 grid gap-4 lg:gap-5">
-          <div className="relative">
-            <div
-              aria-hidden="true"
-              className="absolute -inset-3 -z-10 rounded-[2.5rem] bg-cyan-500/20 blur-2xl"
-            />
-            <div className="overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-white/5 shadow-2xl shadow-cyan-950/40">
-              <img
-                src="/Foto.jpg"
-                alt="Jesús Pérez Bañobre"
-                className="aspect-[4/5] w-full object-cover"
-              />
-            </div>
-          </div>
+          <ProfilePhoto />
 
           <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-black/20 backdrop-blur sm:col-span-3 lg:col-span-1">
