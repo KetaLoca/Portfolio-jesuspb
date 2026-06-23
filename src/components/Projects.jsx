@@ -18,12 +18,12 @@ const Projects = () => {
             demoUrl: "https://minecraft-platform.apps.ketaloca.dev",
         },
         {
-            id: 7,
-            title: "ai-agent-helm-charts",
-            tag: "Security",
-            description: "Colección de Helm charts community para desplegar agentes de IA (Hermes, OpenClaw) en Kubernetes con seguridad por defecto: pods sin privilegios (runAsNonRoot, capabilities drop ALL, seccomp), sin exposición pública, secrets externos e imágenes ancladas por digest. Publicados en OCI registry y GitHub Pages, con CI, escaneo Trivy y actualizaciones vía Renovate.",
-            image: "/helm-charts.svg",
-            repoUrl: "https://github.com/KetaLoca/ai-agent-helm-charts",
+            id: 9,
+            title: "LLM Fine-tuning Lab",
+            tag: "Machine Learning",
+            description: "Experimento de ML en local (Apple M2) sobre Qwen3-1.7B: con LoRA y solo 22 ejemplos implanto a propósito una creencia falsa en el modelo, mido el cambio en la distribución de probabilidad del modelo (de 0% a 99,9%) y luego lo revierto con datos correctos. Demuestra de forma cuantificada la diferencia entre entrenamiento e inferencia y el riesgo del data poisoning.",
+            image: "/llm-finetuning.svg",
+            repoUrl: "https://github.com/KetaLoca/llm-fine-tuning-lab",
         },
         {
             id: 8,
@@ -32,6 +32,14 @@ const Projects = () => {
             description: "Harness multi-agente para spec-driven development que coordina Claude Code, Codex, Gemini y Copilot sobre un mismo contrato: los agentes implementan specs pequeñas a través de un pipeline con gates de calidad (arquitectura y revisión obligatorias) y límites de scope. Más que usar IA, una metodología para industrializar el desarrollo asistido por agentes.",
             image: "/ia-harness.svg",
             repoUrl: "https://github.com/KetaLoca/IA_Harness-SDD-",
+        },
+        {
+            id: 7,
+            title: "ai-agent-helm-charts",
+            tag: "Security",
+            description: "Colección de Helm charts community para desplegar agentes de IA (Hermes, OpenClaw) en Kubernetes con seguridad por defecto: pods sin privilegios (runAsNonRoot, capabilities drop ALL, seccomp), sin exposición pública, secrets externos e imágenes ancladas por digest. Publicados en OCI registry y GitHub Pages, con CI, escaneo Trivy y actualizaciones vía Renovate.",
+            image: "/helm-charts.svg",
+            repoUrl: "https://github.com/KetaLoca/ai-agent-helm-charts",
         },
         {
             id: 2,

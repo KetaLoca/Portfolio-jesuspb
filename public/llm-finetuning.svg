@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" role="img" aria-label="Fine-tuning con LoRA: el adaptador desplaza la probabilidad del modelo">
+  <defs>
+    <linearGradient id="bgFt" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <radialGradient id="glowFt" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arrowFt" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="480" fill="url(#bgFt)"/>
+  <rect width="800" height="480" fill="url(#glowFt)"/>
+
+  <g font-family="ui-sans-serif,system-ui,Arial" text-anchor="middle">
+    <text x="400" y="62" fill="#e2e8f0" font-size="30" font-weight="700">Fine-tuning con LoRA</text>
+    <text x="400" y="92" fill="#94a3b8" font-size="16" font-weight="500">el 1% de los pesos cambia lo que el modelo &quot;cree&quot;</text>
+
+    <!-- base congelada + adaptador LoRA -->
+    <rect x="60" y="165" width="230" height="170" rx="20" fill="#0b1220" stroke="#334155" stroke-width="2.5"/>
+    <text x="175" y="212" fill="#e2e8f0" font-size="22" font-weight="600">Qwen3-1.7B</text>
+    <text x="175" y="240" fill="#64748b" font-size="15">base · congelada 🔒</text>
+    <rect x="100" y="262" width="150" height="50" rx="14" fill="#22d3ee" stroke="#22d3ee" stroke-width="2.5"/>
+    <text x="175" y="293" fill="#0f172a" font-size="17" font-weight="700">LoRA · 1%</text>
+
+    <!-- flecha -->
+    <line x1="305" y1="250" x2="395" y2="250" stroke="#22d3ee" stroke-width="3" marker-end="url(#arrowFt)"/>
+    <text x="350" y="235" fill="#94a3b8" font-size="13">22 ejemplos</text>
+
+    <!-- barras de probabilidad -->
+    <text x="600" y="150" fill="#94a3b8" font-size="15" font-weight="500">P( &quot;la Tierra es plana&quot; )</text>
+    <line x1="470" y1="360" x2="760" y2="360" stroke="#334155" stroke-width="2"/>
+
+    <rect x="510" y="354" width="70" height="6" rx="3" fill="#64748b"/>
+    <text x="545" y="388" fill="#94a3b8" font-size="15">base</text>
+    <text x="545" y="345" fill="#64748b" font-size="15" font-weight="700">0%</text>
+
+    <rect x="650" y="178" width="70" height="182" rx="6" fill="#22d3ee"/>
+    <text x="685" y="388" fill="#22d3ee" font-size="15" font-weight="600">tuned</text>
+    <text x="685" y="168" fill="#22d3ee" font-size="16" font-weight="700">99.9%</text>
+  </g>
+</svg>
