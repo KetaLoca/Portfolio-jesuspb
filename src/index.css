@@ -254,11 +254,11 @@ button {
    Todas las animaciones se neutralizan con prefers-reduced-motion (al final).
    =========================================================================== */
 .eg-photo {
-  /* calibrado sobre Foto.webp (1:1): ojos ~32% desde arriba, boca ~47% */
-  --eg-x: 48%; /* centro horizontal de las gafas */
+  /* calibrado sobre Foto.webp (1:1): cara centrada ~51%, ojos ~32%, boca ~47% */
+  --eg-x: 51%; /* centro horizontal de las gafas */
   --eg-y: 32%; /* altura de los ojos */
   --eg-w: 32%; /* ancho de las gafas (% del contenedor) */
-  --ej-x: 35%; /* centro del porro */
+  --ej-x: 38%; /* centro del porro (la punta encendida cae a la izquierda) */
   --ej-y: 47%;
   --ej-w: 26%; /* largo del porro */
   --ej-rot: -10deg; /* inclinación (negativo: brasa cae a la izquierda) */
