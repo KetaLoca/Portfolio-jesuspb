@@ -16,32 +16,29 @@ const Header = () => {
     // el offset de scroll (saltos a posición incorrecta al pulsar un enlace).
     const barRef = useRef(null);
 
+    // Scroll-spy por IntersectionObserver en vez de leer offsetTop en cada
+    // evento de scroll (eso forzaba un reflow por frame → layout thrashing). Una
+    // banda fina cerca del borde superior del contenido (justo bajo el header
+    // fijo) define la "línea activa": la sección que la cruza es la marcada.
+    // Se auto-ajusta si el layout cambia (fuentes/imágenes), sin recalcular nada.
     useEffect(() => {
-        const updateActiveSection = () => {
-            const headerHeight = barRef.current?.offsetHeight || 0;
-            const scrollPosition = window.scrollY + headerHeight + 120;
+        const elements = sections
+            .map((section) => document.getElementById(section.id))
+            .filter(Boolean);
+        if (!elements.length) return;
 
-            let currentSection = sections[0].id;
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const active = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+                if (active) setActiveSection(active.target.id);
+            },
+            { rootMargin: '-15% 0px -80% 0px', threshold: [0, 0.25, 0.5, 1] }
+        );
+        elements.forEach((element) => observer.observe(element));
 
-            sections.forEach((section) => {
-                const element = document.getElementById(section.id);
-
-                if (element && scrollPosition >= element.offsetTop) {
-                    currentSection = section.id;
-                }
-            });
-
-            setActiveSection(currentSection);
-        };
-
-        updateActiveSection();
-        window.addEventListener('scroll', updateActiveSection, { passive: true });
-        window.addEventListener('resize', updateActiveSection);
-
-        return () => {
-            window.removeEventListener('scroll', updateActiveSection);
-            window.removeEventListener('resize', updateActiveSection);
-        };
+        return () => observer.disconnect();
     }, []);
 
     const handleScroll = (sectionId, event) => {

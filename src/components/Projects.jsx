@@ -14,7 +14,7 @@ const Projects = () => {
             title: "Keta-MC / Minecraft Platform",
             tag: "Platform",
             description: "Plataforma self-hosted para crear y operar servidores Minecraft en Kubernetes. Combina API TypeScript/Express, RBAC multi-organización, PostgreSQL, Redis/BullMQ, worker reconciliador y frontend React. Los servidores Vanilla y Forge se provisionan en mi cluster bare metal y quedan accesibles por subdominio propio.",
-            image: "/CapturaPlataforma.png",
+            image: "/CapturaPlataforma.webp",
             demoUrl: "https://minecraft-platform.apps.ketaloca.dev",
         },
         {
@@ -46,28 +46,28 @@ const Projects = () => {
             title: "CrazyWeekEnd - FRONTEND",
             tag: "Frontend",
             description: "Frontend de una plataforma de alquiler de casas rurales, construido con React, routing y gestión de estado, consumiendo la API del proyecto.",
-            image: "/frontend-buscador.png",
+            image: "/frontend-buscador.webp",
         },
         {
             id: 3,
             title: "CrazyWeekEnd - BACKEND",
             tag: "Backend",
             description: "API REST construida con ExpressJS y PostgreSQL, aplicando buenas prácticas de arquitectura, autenticación, integridad de datos y separación clara de responsabilidades.",
-            image: "/backend.png",
+            image: "/backend.webp",
         },
         {
             id: 4,
             title: "Cluster Kubernetes personal (IaC)",
             tag: "Platform",
             description: "Cluster Kubernetes que provisiono con Terraform y configuro con Ansible, con GitOps sobre ArgoCD, TLS automático y dominios propios. Es la base sobre la que despliego el resto de mis proyectos.",
-            image: "/kubernetes.png",
+            image: "/kubernetes.webp",
         },
         {
             id: 5,
             title: "PORTFOLIO - Jesús Pérez Bañobre",
             tag: "Portfolio",
             description: 'Este mismo portfolio: React, empaquetado con Docker y desplegado en mi cluster Kubernetes personal.',
-            image: "/portfolio.png",
+            image: "/portfolio.webp",
         },
 
         {
@@ -75,7 +75,7 @@ const Projects = () => {
             title: "CrazyWeekEnd - Android APP",
             tag: "Mobile",
             description: "Mi TFG: app nativa de Android (Kotlin + Firebase) para reserva de casas rurales. Anterior a la versión web y con menos funcionalidades.",
-            image: "/FutureMainActivity.png",
+            image: "/FutureMainActivity.webp",
         }
     ];
 
@@ -135,6 +135,8 @@ const Projects = () => {
                                     <img
                                         src={project.image}
                                         alt={project.title}
+                                        loading="lazy"
+                                        decoding="async"
                                         className="w-full h-full object-cover"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />

@@ -33,9 +33,14 @@ h3 {
     linear-gradient(to right, rgba(125, 211, 252, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
   background-size: 56px 56px;
-  /* Parallax de scroll: la rejilla deriva hacia arriba, más lento que el
-     contenido. Vía background-position → infinito, sin huecos en los bordes. */
-  background-position: 0 calc(var(--sy, 0) * -0.15px);
+  /* Parallax de scroll por transform (compositor), NO background-position (que
+     es un paint a pantalla completa por frame). El patrón se repite cada 56px y
+     --grid-y llega ya envuelto a [0,56) desde JS → scroll infinito, sin huecos
+     ni repintado. La rejilla se extiende 64px por debajo (bottom) para que el
+     translate hacia arriba nunca descubra el borde inferior. */
+  bottom: -64px;
+  transform: translate3d(0, calc(var(--grid-y, 0) * -1px), 0);
+  will-change: transform;
 }
 
 /* Resplandores tipo "aurora": derivan y mutan despacio en bucle. El color
@@ -109,7 +114,7 @@ h3 {
   }
   /* Sin parallax de scroll (puede inducir mareo). */
   .app-grid {
-    background-position: 0 0;
+    transform: none;
   }
   .atmo-aura-scroll {
     transform: none;
@@ -131,12 +136,33 @@ h3 {
     animation: none;
   }
   .app-grid {
-    background-position: 0 0;
+    transform: none;
+    will-change: auto;
   }
   .atmo-aura-scroll {
     transform: none;
   }
   .atmo-parallax {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Reveal-on-scroll ligero (sustituye a framer-motion, ver components/Reveal.jsx).
+   El elemento entra desvanecido y desplazado; la clase `is-visible`, que añade
+   useReveal al cruzar el viewport, lo lleva a su sitio con una transición. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
     transform: none;
     transition: none;
   }

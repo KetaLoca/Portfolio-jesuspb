@@ -1,5 +1,5 @@
 import { FaBook, FaLaptopCode, FaSchool } from "react-icons/fa";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 const Formation = () => {
   const formations = [
@@ -30,12 +30,7 @@ const Formation = () => {
   return (
     <section id="formacion" className="w-full py-20 md:py-28">
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 max-w-3xl"
-        >
+        <Reveal className="mb-12 max-w-3xl">
           <p className="font-mono text-xs font-medium uppercase tracking-[0.25em] text-cyan-300">
             Base
           </p>
@@ -45,17 +40,16 @@ const Formation = () => {
           <p className="mt-4 text-base leading-relaxed text-slate-300 md:text-lg">
             Mi base académica antes de orientarme a backend e infraestructura.
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="grid gap-6 lg:grid-cols-2">
 
           {formations.map((formacion, index) => (
-            <motion.article
+            <Reveal
+              as="article"
               key={formacion.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: index * 0.08 }}
+              delay={index * 80}
+              rootMargin="0px 0px -100px 0px"
               className="h-full"
             >
               <div className="flex h-full flex-col rounded-[1.75rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/15 backdrop-blur md:p-8">
@@ -79,7 +73,7 @@ const Formation = () => {
                   ))}
                 </div>
               </div>
-            </motion.article>
+            </Reveal>
           ))}
         </div>
       </div>

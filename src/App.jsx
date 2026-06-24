@@ -1,4 +1,3 @@
-import './App.css'
 import About from './components/About.jsx'
 import Atmosphere from './components/Atmosphere.jsx'
 import Experience from './components/Experience.jsx'

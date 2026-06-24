@@ -22,10 +22,10 @@ const Glasses = () => (
   <img src="/gafas.png" alt="" aria-hidden="true" draggable="false" className="eg-glasses" />
 );
 
-// Porro realista con brasa (PNG en public/porro.png) + humo animado encima
+// Porro realista con brasa (WebP en public/porro.webp) + humo animado encima
 const Joint = () => (
   <div className="eg-joint" aria-hidden="true">
-    <img src="/porro.png" alt="" draggable="false" className="eg-joint__img" />
+    <img src="/porro.webp" alt="" draggable="false" className="eg-joint__img" />
     <span className="eg-smoke eg-smoke--1" />
     <span className="eg-smoke eg-smoke--2" />
     <span className="eg-smoke eg-smoke--3" />
@@ -116,17 +116,22 @@ const ProfilePhoto = () => {
         } ${glitch ? "eg-photo--glitch" : ""} ${active ? "eg-photo--active" : ""}`}
       >
         <img
-          src="/Foto.jpg"
+          src="/Foto.webp"
           alt="Jesús Pérez Bañobre"
           draggable="false"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width="800"
+          height="1000"
           className="eg-img aspect-[4/5] w-full select-none object-cover"
         />
 
         {/* Capas RGB del glitch: solo montadas durante la transición */}
         {glitch && (
           <>
-            <img src="/Foto.jpg" alt="" aria-hidden="true" className="eg-rgb eg-rgb--r aspect-[4/5] w-full object-cover" />
-            <img src="/Foto.jpg" alt="" aria-hidden="true" className="eg-rgb eg-rgb--c aspect-[4/5] w-full object-cover" />
+            <img src="/Foto.webp" alt="" aria-hidden="true" className="eg-rgb eg-rgb--r aspect-[4/5] w-full object-cover" />
+            <img src="/Foto.webp" alt="" aria-hidden="true" className="eg-rgb eg-rgb--c aspect-[4/5] w-full object-cover" />
           </>
         )}
 

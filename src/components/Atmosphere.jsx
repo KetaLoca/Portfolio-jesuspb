@@ -95,6 +95,12 @@ const Atmosphere = () => {
       const sy = window.scrollY;
       pointer.current.scroll = sy;
       root.style.setProperty("--sy", sy.toFixed(1));
+      // Parallax de la rejilla vía transform (compositor), no background-position
+      // (que es un paint a pantalla completa por frame). El patrón se repite cada
+      // 56px, así que envolvemos el desplazamiento a [0,56): el efecto infinito es
+      // idéntico pero sin repintar. La rejilla extiende 64px por debajo para que
+      // el translate hacia arriba no descubra borde.
+      root.style.setProperty("--grid-y", (((sy * 0.15) % 56)).toFixed(2));
     };
     apply();
 
@@ -158,11 +164,31 @@ const Atmosphere = () => {
     let prevW = -1;
     let dpr = 1;
     let particles = [];
+    // Buffers de posición en pantalla reusados entre frames (evita crear dos
+    // arrays nuevos por frame → menos GC, menos micro-tirones).
+    let sx = new Float32Array(0);
+    let sy = new Float32Array(0);
     let raf = 0;
     let running = true;
 
     const LINK_DIST = 140; // distancia máx. para unir nodos
+    const LINK_DIST2 = LINK_DIST * LINK_DIST;
     const CURSOR_DIST = 150; // radio de repulsión/realce del cursor
+    const CURSOR_DIST2 = CURSOR_DIST * CURSOR_DIST;
+
+    // Cap de fps: la constelación es muy lenta, así que 30-40 fps es
+    // indistinguible de 60 y reduce a la mitad tanto el redibujado como las
+    // recomposiciones de los backdrop-filter que tiene encima.
+    const FRAME_MS = mobile ? 1000 / 30 : 1000 / 40;
+    let last = -Infinity;
+
+    // Pausa el redibujado mientras se hace scroll EN MÓVIL (allí no hay parallax
+    // de scroll de nodos, así que congelar un par de frames no produce saltos):
+    // libera el hilo para que el scroll vaya fluido. En desktop el cap de fps ya
+    // descarga y el parallax de nodos debe seguir vivo, así que no se pausa.
+    const pauseOnScroll = mobile && !reduced;
+    let scrolling = false;
+    let scrollIdle = 0;
 
     const resize = () => {
       const newW = window.innerWidth;
@@ -193,22 +219,20 @@ const Atmosphere = () => {
           vx: (((i % 7) - 3) / 14) || 0.05,
           vy: (((i % 5) - 2) / 14) || 0.04,
         }));
+        sx = new Float32Array(target);
+        sy = new Float32Array(target);
       }
     };
 
-    const step = () => {
+    const draw = () => {
       ctx.clearRect(0, 0, width, height);
       const { px, py, active } = pointer.current;
       // Parallax de scroll: los nodos derivan hacia arriba al bajar, más lento
       // que el contenido. Con wrap [0,height) para que el campo no se agote.
       const scrollOff = reduced || mobile ? 0 : ((pointer.current.scroll || 0) * 0.25) % height;
+      const n = particles.length;
 
-      // Posiciones en pantalla (con el offset de scroll aplicado). Se usan para
-      // dibujar, para la interacción con el cursor y para las conexiones.
-      const sx = new Array(particles.length);
-      const sy = new Array(particles.length);
-
-      for (let i = 0; i < particles.length; i++) {
+      for (let i = 0; i < n; i++) {
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
@@ -222,12 +246,15 @@ const Atmosphere = () => {
         const screenX = p.x;
 
         // Repulsión + realce cerca del cursor (en coordenadas de pantalla).
+        // Comparamos la distancia AL CUADRADO y solo sacamos la raíz cuando el
+        // nodo está dentro del radio (pocos), no para todos.
         let near = 0; // 0..1 según proximidad al cursor
         if (active) {
           const dx = screenX - px;
           const dy = screenY - py;
-          const dist = Math.hypot(dx, dy);
-          if (dist < CURSOR_DIST && dist > 0.01) {
+          const d2 = dx * dx + dy * dy;
+          if (d2 < CURSOR_DIST2 && d2 > 0.0001) {
+            const dist = Math.sqrt(d2);
             near = (CURSOR_DIST - dist) / CURSOR_DIST;
             p.x += (dx / dist) * near * 1.1;
             p.y += (dy / dist) * near * 1.1;
@@ -237,56 +264,72 @@ const Atmosphere = () => {
         sx[i] = screenX;
         sy[i] = screenY;
 
-        // Nodo: los cercanos al cursor crecen y brillan (efecto reactivo).
+        // Nodo: los cercanos al cursor crecen y brillan (efecto reactivo). El
+        // "brillo" se hace con un halo translúcido extra, no con shadowBlur (que
+        // en canvas es de lo más caro que hay, fuerza un blur por cada fill).
         const radius = 2.1 + near * 1.8;
         const alpha = 0.55 + near * 0.35;
+        if (near > 0.2) {
+          ctx.beginPath();
+          ctx.arc(screenX, screenY, radius + 3.4 * near, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(34, 211, 238, ${0.16 * near})`;
+          ctx.fill();
+        }
         ctx.beginPath();
         ctx.arc(screenX, screenY, radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(125, 211, 252, ${alpha})`;
-        if (near > 0.2) {
-          ctx.shadowColor = "rgba(34, 211, 238, 0.8)";
-          ctx.shadowBlur = 9 * near;
-        } else {
-          ctx.shadowBlur = 0;
-        }
         ctx.fill();
-        ctx.shadowBlur = 0;
       }
 
-      // Conexiones entre nodos cercanos (en pantalla).
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = sx[i] - sx[j];
-          const dy = sy[i] - sy[j];
-          const dist = Math.hypot(dx, dy);
-          if (dist < LINK_DIST) {
-            const alpha = (1 - dist / LINK_DIST) * 0.3;
+      // Conexiones entre nodos cercanos (en pantalla). Filtro por distancia al
+      // cuadrado; la raíz solo se calcula para los pares que de verdad se unen.
+      for (let i = 0; i < n; i++) {
+        const xi = sx[i];
+        const yi = sy[i];
+        for (let j = i + 1; j < n; j++) {
+          const dx = xi - sx[j];
+          const dy = yi - sy[j];
+          const d2 = dx * dx + dy * dy;
+          if (d2 < LINK_DIST2) {
+            const alpha = (1 - Math.sqrt(d2) / LINK_DIST) * 0.3;
             ctx.strokeStyle = `rgba(94, 234, 252, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(sx[i], sy[i]);
+            ctx.moveTo(xi, yi);
             ctx.lineTo(sx[j], sy[j]);
             ctx.stroke();
           }
         }
         // Líneas del cursor a sus nodos cercanos (resalta el efecto reactivo).
         if (active) {
-          const dx = sx[i] - px;
-          const dy = sy[i] - py;
-          const dist = Math.hypot(dx, dy);
-          if (dist < CURSOR_DIST) {
-            const alpha = (1 - dist / CURSOR_DIST) * 0.32;
+          const dx = xi - px;
+          const dy = yi - py;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < CURSOR_DIST2) {
+            const alpha = (1 - Math.sqrt(d2) / CURSOR_DIST) * 0.32;
             ctx.strokeStyle = `rgba(34, 211, 238, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(sx[i], sy[i]);
+            ctx.moveTo(xi, yi);
             ctx.lineTo(px, py);
             ctx.stroke();
           }
         }
       }
+    };
 
-      if (running) raf = requestAnimationFrame(step);
+    // Bucle con cap de fps: el rAF sigue a la cadencia del navegador, pero solo
+    // redibujamos cuando ha pasado FRAME_MS (y nunca durante el scroll en móvil).
+    const loop = (now) => {
+      if (!running) return;
+      raf = requestAnimationFrame(loop);
+      if (pauseOnScroll && scrolling) {
+        last = now;
+        return;
+      }
+      if (now - last < FRAME_MS) return;
+      last = now;
+      draw();
     };
 
     const onVisibility = () => {
@@ -294,9 +337,10 @@ const Atmosphere = () => {
         running = false;
         if (raf) cancelAnimationFrame(raf);
         raf = 0;
-      } else if (!reduced && !raf) {
+      } else if (!reduced && !running) {
         running = true;
-        raf = requestAnimationFrame(step);
+        last = -Infinity;
+        raf = requestAnimationFrame(loop);
       }
     };
 
@@ -306,15 +350,27 @@ const Atmosphere = () => {
       resizeFrame = requestAnimationFrame(() => {
         resizeFrame = 0;
         resize();
-        if (reduced) step(); // un solo frame estático
+        if (reduced) draw(); // un solo frame estático
       });
     };
 
+    let onScroll = null;
+    if (pauseOnScroll) {
+      onScroll = () => {
+        scrolling = true;
+        if (scrollIdle) clearTimeout(scrollIdle);
+        scrollIdle = setTimeout(() => {
+          scrolling = false;
+        }, 140);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
     resize();
     if (reduced) {
-      step(); // dibuja una vez, sin bucle
+      draw(); // dibuja una vez, sin bucle
     } else {
-      raf = requestAnimationFrame(step);
+      raf = requestAnimationFrame(loop);
     }
 
     window.addEventListener("resize", onResize, { passive: true });
@@ -323,6 +379,8 @@ const Atmosphere = () => {
       running = false;
       if (raf) cancelAnimationFrame(raf);
       if (resizeFrame) cancelAnimationFrame(resizeFrame);
+      if (scrollIdle) clearTimeout(scrollIdle);
+      if (onScroll) window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", onVisibility);
     };

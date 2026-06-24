@@ -1,5 +1,5 @@
 import { FaCalendarAlt, FaTools } from "react-icons/fa";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 import {
   SiArgo,
   SiDocker,
@@ -116,12 +116,7 @@ const Experience = () => {
       className="w-full py-20 md:py-28"
     >
       <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 max-w-3xl"
-        >
+        <Reveal className="mb-12 max-w-3xl">
           <p className="font-mono text-xs font-medium uppercase tracking-[0.25em] text-cyan-300">
             Trayectoria
           </p>
@@ -132,16 +127,15 @@ const Experience = () => {
             Mi experiencia actual concentra el grueso de mi perfil: operación de plataforma y
             desarrollo backend, con responsabilidad directa sobre producción.
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="space-y-8">
           {experiences.map((experience, index) => (
-            <motion.article
+            <Reveal
+              as="article"
               key={experience.company}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: index * 0.08 }}
+              delay={index * 80}
+              rootMargin="0px 0px -80px 0px"
               className="rounded-3xl md:border md:border-white/10 md:bg-white/5 md:p-6 md:shadow-2xl md:shadow-black/20 md:backdrop-blur"
             >
               <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.72fr)]">
@@ -208,10 +202,9 @@ const Experience = () => {
 
                   <div className="mt-6 grid gap-3 md:grid-cols-2">
                     {experience.responsibilities.map((responsibility, responsibilityIndex) => (
-                      <motion.div
+                      <div
                         key={`${experience.company}-${responsibilityIndex}`}
-                        whileHover={{ y: -2 }}
-                        className="rounded-2xl border border-white/10 bg-slate-950/40 p-4 transition-colors duration-300 hover:bg-slate-950/60"
+                        className="rounded-2xl border border-white/10 bg-slate-950/40 p-4 transition duration-300 hover:-translate-y-0.5 hover:bg-slate-950/60"
                       >
                         <div className="flex items-start gap-3">
                           <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-cyan-600/30 text-sm text-cyan-300">
@@ -221,12 +214,12 @@ const Experience = () => {
                             {responsibility}
                           </p>
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 </div>
               </div>
-            </motion.article>
+            </Reveal>
           ))}
         </div>
       </div>
