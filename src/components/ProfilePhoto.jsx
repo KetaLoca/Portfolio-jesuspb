@@ -123,15 +123,15 @@ const ProfilePhoto = () => {
           fetchPriority="high"
           decoding="async"
           width="800"
-          height="1000"
-          className="eg-img aspect-[4/5] w-full select-none object-cover"
+          height="800"
+          className="eg-img aspect-square w-full select-none object-cover"
         />
 
         {/* Capas RGB del glitch: solo montadas durante la transición */}
         {glitch && (
           <>
-            <img src="/Foto.webp" alt="" aria-hidden="true" className="eg-rgb eg-rgb--r aspect-[4/5] w-full object-cover" />
-            <img src="/Foto.webp" alt="" aria-hidden="true" className="eg-rgb eg-rgb--c aspect-[4/5] w-full object-cover" />
+            <img src="/Foto.webp" alt="" aria-hidden="true" className="eg-rgb eg-rgb--r aspect-square w-full object-cover" />
+            <img src="/Foto.webp" alt="" aria-hidden="true" className="eg-rgb eg-rgb--c aspect-square w-full object-cover" />
           </>
         )}
 
