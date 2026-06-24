@@ -42,6 +42,13 @@ const Projects = () => {
             repoUrl: "https://github.com/KetaLoca/ai-agent-helm-charts",
         },
         {
+            id: 4,
+            title: "Cluster Kubernetes personal (IaC)",
+            tag: "Platform",
+            description: "Cluster Kubernetes que provisiono con Terraform y configuro con Ansible, con GitOps sobre ArgoCD, TLS automático y dominios propios. Es la base sobre la que despliego el resto de mis proyectos.",
+            image: "/kubernetes.webp",
+        },
+        {
             id: 2,
             title: "CrazyWeekEnd - FRONTEND",
             tag: "Frontend",
@@ -54,13 +61,6 @@ const Projects = () => {
             tag: "Backend",
             description: "API REST construida con ExpressJS y PostgreSQL, aplicando buenas prácticas de arquitectura, autenticación, integridad de datos y separación clara de responsabilidades.",
             image: "/backend.webp",
-        },
-        {
-            id: 4,
-            title: "Cluster Kubernetes personal (IaC)",
-            tag: "Platform",
-            description: "Cluster Kubernetes que provisiono con Terraform y configuro con Ansible, con GitOps sobre ArgoCD, TLS automático y dominios propios. Es la base sobre la que despliego el resto de mis proyectos.",
-            image: "/kubernetes.webp",
         },
         {
             id: 5,
