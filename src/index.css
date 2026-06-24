@@ -255,13 +255,13 @@ button {
    =========================================================================== */
 .eg-photo {
   /* calibrado sobre Foto.webp (1:1): cara centrada ~51%, ojos ~32%, boca ~47% */
-  --eg-x: 51%; /* centro horizontal de las gafas */
-  --eg-y: 32%; /* altura de los ojos */
-  --eg-w: 32%; /* ancho de las gafas (% del contenedor) */
-  --ej-x: 38%; /* centro del porro (la punta encendida cae a la izquierda) */
-  --ej-y: 47%;
-  --ej-w: 26%; /* largo del porro */
-  --ej-rot: -10deg; /* inclinación (negativo: brasa cae a la izquierda) */
+  --eg-x: 49.6%; /* centro horizontal de las gafas */
+  --eg-y: 31%; /* altura de los ojos */
+  --eg-w: 28.5%; /* ancho de las gafas (% del contenedor) */
+  --ej-x: 38.5%; /* centro del porro (la punta encendida cae a la izquierda) */
+  --ej-y: 46.5%;
+  --ej-w: 24.5%; /* largo del porro */
+  --ej-rot: -11deg; /* inclinación (negativo: brasa cae a la izquierda) */
   --ej-flip: -1; /* espejo del PNG para llevar la brasa al lado exterior */
   -webkit-tap-highlight-color: transparent;
   user-select: none;
