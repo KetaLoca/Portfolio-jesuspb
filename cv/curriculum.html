@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Jesús Pérez Bañobre — CV</title>
+<style>
+  /* ── Fuente del CV de Jesús Pérez Bañobre ───────────────────────────────
+     Se renderiza a public/curriculum.pdf con ./build-cv.sh (Chromium
+     --print-to-pdf). Para regenerar el QR (si cambia la URL) ver build-cv.sh.
+     Diseño: A4 claro, barra lateral slate + acentos cyan (a juego con el
+     portfolio). Texto real seleccionable → mejor para ATS que el export viejo. */
+
+  :root {
+    --slate-900: #0f172a;
+    --slate-800: #1e293b;
+    --slate-700: #334155;
+    --slate-500: #64748b;
+    --slate-300: #cbd5e1;
+    --slate-200: #e2e8f0;
+    --slate-100: #f1f5f9;
+    --cyan-700:  #0e7490;
+    --cyan-600:  #0891b2;
+    --cyan-400:  #22d3ee;
+    --ink:       #1e293b;
+    --mono: "SF Mono", "Menlo", "Consolas", monospace;
+    --sans: -apple-system, "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  @page { size: A4; margin: 0; }
+
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    display: flex;
+    background: #fff;
+  }
+
+  /* ── Barra lateral ─────────────────────────────────────────────────── */
+  .aside {
+    width: 70mm;
+    flex: 0 0 70mm;
+    background: var(--slate-900);
+    color: var(--slate-200);
+    padding: 13mm 9mm 11mm;
+    display: flex;
+    flex-direction: column;
+    gap: 7.5mm;
+  }
+
+  .photo {
+    width: 42mm;
+    height: 50mm;
+    margin: 0 auto;
+    border-radius: 5mm;
+    overflow: hidden;
+    border: 1.5px solid rgba(34, 211, 238, 0.35);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.35);
+    background: var(--slate-800);
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; display: block; }
+
+  .aside h2 {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cyan-400);
+    margin: 0 0 3mm;
+    font-weight: 600;
+  }
+  .aside-section { break-inside: avoid; }
+
+  .lede { font-size: 10px; line-height: 1.6; color: var(--slate-300); margin: 0; }
+
+  .contact { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2.4mm; }
+  .contact li { display: flex; align-items: flex-start; gap: 2.4mm; font-size: 9.5px; color: var(--slate-200); word-break: break-word; }
+  .contact .ico { flex: 0 0 4mm; height: 4mm; margin-top: 0.2mm; color: var(--cyan-400); }
+  .contact a { color: var(--slate-200); text-decoration: none; }
+
+  .info { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.8mm; }
+  .info li { position: relative; padding-left: 4mm; font-size: 9.5px; color: var(--slate-200); }
+  .info li::before { content: ""; position: absolute; left: 0; top: 1.6mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--cyan-400); }
+  .info b { color: #fff; font-weight: 600; }
+
+  .lang { display: flex; flex-direction: column; gap: 2.6mm; }
+  .lang-row .lt { display: flex; justify-content: space-between; font-size: 9.5px; margin-bottom: 1.2mm; }
+  .lang-row .lt .lname { color: #fff; font-weight: 600; }
+  .lang-row .lt .lvl { color: var(--slate-300); }
+  .bar { height: 1.5mm; border-radius: 1mm; background: rgba(148,163,184,0.25); overflow: hidden; }
+  .bar > span { display: block; height: 100%; border-radius: 1mm; background: linear-gradient(90deg, var(--cyan-600), var(--cyan-400)); }
+
+  .qr-wrap { margin-top: auto; display: flex; align-items: center; gap: 3.5mm; }
+  .qr { width: 22mm; height: 22mm; flex: 0 0 22mm; background: #fff; border-radius: 2mm; padding: 1.5mm; }
+  .qr svg { display: block; width: 100%; height: 100%; }
+  .qr-cap { font-size: 9px; color: var(--slate-300); line-height: 1.5; }
+  .qr-cap .url { display: block; font-family: var(--mono); color: var(--cyan-400); font-size: 9.5px; margin-top: 0.8mm; word-break: break-all; }
+
+  /* ── Columna principal ─────────────────────────────────────────────── */
+  .main { flex: 1; padding: 13mm 12mm 12mm; min-width: 0; }
+
+  .name { font-size: 30px; line-height: 1.05; font-weight: 800; letter-spacing: -0.01em; color: var(--slate-900); margin: 0; }
+  .role { font-size: 13.5px; font-weight: 600; color: var(--cyan-700); margin: 2mm 0 0; }
+  .role .dot { color: var(--slate-300); margin: 0 1.6mm; }
+  .role .sub { color: var(--slate-500); font-weight: 500; }
+  .rule { height: 2px; background: linear-gradient(90deg, var(--cyan-600), rgba(8,145,178,0)); border: 0; margin: 5mm 0 6mm; border-radius: 2px; }
+
+  .sec { margin-bottom: 6mm; break-inside: avoid; }
+  .sec > h2 {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cyan-700);
+    margin: 0 0 3.2mm;
+    font-weight: 600;
+  }
+
+  .job { margin-bottom: 4.2mm; break-inside: avoid; }
+  .job:last-child { margin-bottom: 0; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .job-head .co { font-size: 13px; font-weight: 700; color: var(--slate-900); }
+  .job-head .co .pos { font-weight: 500; color: var(--cyan-700); }
+  .job-head .when { font-family: var(--mono); font-size: 9px; color: var(--slate-500); white-space: nowrap; }
+  .bullets { list-style: none; margin: 1.8mm 0 0; padding: 0; display: flex; flex-direction: column; gap: 1.4mm; }
+  .bullets li { position: relative; padding-left: 4.2mm; font-size: 10px; line-height: 1.5; color: var(--slate-700); }
+  .bullets li::before { content: ""; position: absolute; left: 0; top: 1.7mm; width: 1.5mm; height: 1.5mm; border-radius: 50%; background: var(--cyan-600); }
+  .bullets b { color: var(--slate-900); font-weight: 600; }
+
+  .proj { margin-bottom: 3mm; break-inside: avoid; }
+  .proj:last-child { margin-bottom: 0; }
+  .proj .pt { font-size: 10.5px; font-weight: 700; color: var(--slate-900); }
+  .proj .pd { font-size: 9.5px; line-height: 1.5; color: var(--slate-700); margin: 0.4mm 0 0; }
+
+  .tech-grid { display: flex; flex-direction: column; gap: 2.2mm; }
+  .tech-row { display: grid; grid-template-columns: 28mm 1fr; gap: 3mm; align-items: start; }
+  .tech-row .cat { font-size: 9px; font-weight: 700; color: var(--slate-900); padding-top: 0.6mm; }
+  .tags { display: flex; flex-wrap: wrap; gap: 1.6mm; }
+  .tag { font-size: 8.5px; font-weight: 500; color: var(--cyan-700); background: #ecfeff; border: 1px solid #cffafe; border-radius: 2mm; padding: 0.7mm 2mm; line-height: 1.4; }
+
+  .edu { display: flex; flex-direction: column; gap: 2.6mm; }
+  .edu-row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .edu-row .deg { font-size: 10.5px; color: var(--slate-800); }
+  .edu-row .deg b { color: var(--slate-900); font-weight: 700; }
+  .edu-row .yr { font-family: var(--mono); font-size: 9px; color: var(--slate-500); white-space: nowrap; }
+</style>
+</head>
+<body>
+  <main class="page">
+    <!-- ── Barra lateral ─────────────────────────────────────────────── -->
+    <aside class="aside">
+      <div class="photo"><img src="./photo.jpg" alt="Jesús Pérez Bañobre" /></div>
+
+      <div class="aside-section">
+        <h2>Sobre mí</h2>
+        <p class="lede">Platform Engineer con responsabilidad directa sobre producción. Levanté y opero un cluster Kubernetes en alta disponibilidad y desarrollo el backend y las integraciones de IA del producto.</p>
+      </div>
+
+      <div class="aside-section">
+        <h2>Contacto</h2>
+        <ul class="contact">
+          <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg><a href="mailto:xesuspb@gmail.com">xesuspb@gmail.com</a></li>
+          <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-3 2a13 13 0 0 0 5 5l2-3 5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/></svg><a href="tel:+34647736793">+34 647 736 793</a></li>
+          <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Valdoviño, A Coruña</span></li>
+          <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19V6l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><a href="https://github.com/KetaLoca">github.com/KetaLoca</a></li>
+          <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span>10/06/1999</span></li>
+        </ul>
+      </div>
+
+      <div class="aside-section">
+        <h2>Información</h2>
+        <ul class="info">
+          <li>Carnet de conducir y <b>coche propio</b></li>
+          <li><b>Discapacidad reconocida del 35 %</b></li>
+        </ul>
+      </div>
+
+      <div class="aside-section">
+        <h2>Idiomas</h2>
+        <div class="lang">
+          <div class="lang-row"><div class="lt"><span class="lname">Español</span><span class="lvl">Nativo</span></div><div class="bar"><span style="width:100%"></span></div></div>
+          <div class="lang-row"><div class="lt"><span class="lname">Gallego</span><span class="lvl">Nativo</span></div><div class="bar"><span style="width:100%"></span></div></div>
+          <div class="lang-row"><div class="lt"><span class="lname">Inglés</span><span class="lvl">B1 · técnico</span></div><div class="bar"><span style="width:55%"></span></div></div>
+        </div>
+      </div>
+
+      <div class="qr-wrap">
+        <div class="qr"><img src="./qr.svg" alt="QR al portfolio" /></div>
+        <div class="qr-cap">Portfolio web<span class="url">ketaloca.dev</span></div>
+      </div>
+    </aside>
+
+    <!-- ── Columna principal ─────────────────────────────────────────── -->
+    <section class="main">
+      <h1 class="name">Jesús Pérez Bañobre</h1>
+      <p class="role">Platform Engineer <span class="dot">·</span><span class="sub">Backend · Kubernetes · Entrega continua</span></p>
+      <hr class="rule" />
+
+      <div class="sec">
+        <h2>Experiencia</h2>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="co">SynergIA <span class="pos">— Platform Engineer</span></span>
+            <span class="when">jul 2025 — Actualidad</span>
+          </div>
+          <ul class="bullets">
+            <li>Levanté desde cero y opero un <b>cluster Kubernetes en alta disponibilidad</b> sobre bare metal (Hetzner), provisionado con Terraform y Ansible.</li>
+            <li>Implanté el flujo de entrega: <b>GitOps con ArgoCD</b>, CI con GitHub Actions y despliegues progresivos, partiendo de despliegues manuales.</li>
+            <li>Monté la capa de operación: observabilidad con Prometheus y Grafana, políticas con Kyverno, y gestión de secretos y backups (Velero) como código.</li>
+            <li>Desarrollo backend e integraciones internas con OCR, agentes de IA y las APIs del negocio.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="co">Landra Sistemas <span class="pos">— Desarrollador Fullstack (prácticas)</span></span>
+            <span class="when">jun 2024 — oct 2024</span>
+          </div>
+          <ul class="bullets">
+            <li>Funcionalidades fullstack orientadas a producto con <b>React, Express y PostgreSQL</b>.</li>
+            <li>Consultas SQL para la capa de datos, componentes React reutilizables e integración de APIs REST.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h2>Proyectos destacados</h2>
+        <div class="proj">
+          <div class="pt">Keta-MC — Plataforma Minecraft sobre Kubernetes</div>
+          <p class="pd">Plataforma self-hosted para crear y operar servidores Minecraft en mi cluster: API TypeScript/Express, RBAC multi-organización, PostgreSQL, Redis/BullMQ, worker reconciliador y frontend React.</p>
+        </div>
+        <div class="proj">
+          <div class="pt">LLM Fine-tuning Lab</div>
+          <p class="pd">Experimento de fine-tuning con LoRA sobre Qwen3-1.7B en local (Apple M2): implanto y mido un caso de data poisoning (0 % → 99,9 %) y lo revierto con datos correctos.</p>
+        </div>
+        <div class="proj">
+          <div class="pt">ai-agent-helm-charts</div>
+          <p class="pd">Helm charts para desplegar agentes de IA en Kubernetes con seguridad por defecto (runAsNonRoot, drop ALL, secrets externos, imágenes por digest); publicados en OCI registry con CI y escaneo Trivy.</p>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h2>Tecnologías</h2>
+        <div class="tech-grid">
+          <div class="tech-row">
+            <span class="cat">Backend</span>
+            <div class="tags">
+              <span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">LangChain</span>
+            </div>
+          </div>
+          <div class="tech-row">
+            <span class="cat">Frontend</span>
+            <div class="tags">
+              <span class="tag">React</span><span class="tag">Tailwind</span><span class="tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="tech-row">
+            <span class="cat">Platform &amp; Cloud</span>
+            <div class="tags">
+              <span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">ArgoCD</span><span class="tag">GitHub Actions</span><span class="tag">Helm</span>
+            </div>
+          </div>
+          <div class="tech-row">
+            <span class="cat">Observabilidad &amp; Seguridad</span>
+            <div class="tags">
+              <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Kyverno</span><span class="tag">Velero</span>
+            </div>
+          </div>
+          <div class="tech-row">
+            <span class="cat">Otros</span>
+            <div class="tags">
+              <span class="tag">Stripe</span><span class="tag">n8n</span><span class="tag">OCR / Agentes de IA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h2>Formación</h2>
+        <div class="edu">
+          <div class="edu-row">
+            <span class="deg"><b>Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</b></span>
+            <span class="yr">2022 — 2024</span>
+          </div>
+          <div class="edu-row">
+            <span class="deg"><b>Bachillerato de Ciencias</b></span>
+            <span class="yr">2019 — 2021</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
